@@ -47,7 +47,7 @@ function ProposalsInner() {
   const router = useRouter()
   const { admin } = useRole()
   const kb = useMock((s) => s.kbs.find((k) => k.id === params.kbId))!
-  const all = useMock((s) => s.proposals.filter((p) => p.kbId === kb.id))
+  const all = useMock((s) => s.proposals).filter((p) => p.kbId === kb.id)
   const approve = useMock((s) => s.approveProposal)
   const reject = useMock((s) => s.rejectProposal)
   const updateKb = useMock((s) => s.updateKb)

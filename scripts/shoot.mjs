@@ -20,10 +20,15 @@ await page.evaluateOnNewDocument((role) => {
     if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify({ state: { authed: true, role: role || "owner", lastWorkspaceSlug: "northwind", onboardingDone: true }, version: 0 }))
   } catch {}
 }, roleArg)
+const errs = []
+page.on("pageerror", (e) => errs.push(String(e.message).slice(0, 300)))
+page.on("console", (m) => { if (m.type() === "error") errs.push(m.text().slice(0, 300)) })
 for (const route of routes) {
+  errs.length = 0
   const name = route.replace(/^\//, "").replace(/[\/?=&]+/g, "_").replace(/_$/, "") || "root"
   const url = `http://localhost:3020${route}`
   try {
+    await page.setViewport({ width, height: width < 600 ? 844 : 1000, deviceScaleFactor: 1 })
     await page.goto(url, { waitUntil: "networkidle2", timeout: 90000 })
     await new Promise((r) => setTimeout(r, 1200))
     const height = await page.evaluate(() => Math.min(document.documentElement.scrollHeight, 4000))
@@ -32,6 +37,7 @@ for (const route of routes) {
     await page.screenshot({ path: `${outDir}/${name}@${width}.png`, fullPage: false })
     const errors = await page.evaluate(() => document.body.innerText.includes("Application error") || document.body.innerText.includes("Unhandled Runtime Error"))
     console.log(`${errors ? "ERROR" : "ok"} ${route} -> ${name}@${width}.png (h=${height})`)
+    if (errs.length) console.log("   console: " + errs.filter((e) => !e.includes("hydrat") || true).slice(0, 4).join(" | "))
   } catch (e) {
     console.log(`FAIL ${route}: ${e.message}`)
   }

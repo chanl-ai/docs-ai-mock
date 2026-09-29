@@ -39,7 +39,7 @@ export default function KbAccessPage() {
   const members = useMock((s) => s.members)
   const groups = useMock((s) => s.groups)
   const apiKeys = useMock((s) => s.apiKeys)
-  const sources = useMock((s) => s.sources.filter((x) => kb.sources.some((l) => l.sourceId === x.id)))
+  const sources = useMock((s) => s.sources).filter((x) => kb.sources.some((l) => l.sourceId === x.id))
   const items = useMock((s) => s.items)
   const kbs = useMock((s) => s.kbs)
   const updateKb = useMock((s) => s.updateKb)

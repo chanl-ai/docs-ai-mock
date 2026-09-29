@@ -43,7 +43,7 @@ function PlaygroundInner() {
   const { base } = useWs()
   const { admin } = useRole()
   const kb = useMock((s) => s.kbs.find((k) => k.id === params.kbId))!
-  const sources = useMock((s) => s.sources.filter((x) => kb.sources.some((l) => l.sourceId === x.id)))
+  const sources = useMock((s) => s.sources).filter((x) => kb.sources.some((l) => l.sourceId === x.id))
   const items = useMock((s) => s.items)
   const updateRetrieval = useMock((s) => s.updateRetrieval)
   const addTestQuestion = useMock((s) => s.addTestQuestion)

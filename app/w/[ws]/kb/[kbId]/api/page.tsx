@@ -29,7 +29,7 @@ export default function KbApiPage() {
   const params = useParams<{ kbId: string }>()
   const { admin } = useRole()
   const kb = useMock((s) => s.kbs.find((k) => k.id === params.kbId))!
-  const apiKeys = useMock((s) => s.apiKeys.filter((k) => k.kbIds.includes(kb.id) || k.kbIds.length === 0))
+  const apiKeys = useMock((s) => s.apiKeys).filter((k) => k.kbIds.includes(kb.id) || k.kbIds.length === 0)
   const createApiKey = useMock((s) => s.createApiKey)
   const [keyId, setKeyId] = useState<string>(apiKeys[0]?.id ?? "")
   const [reveal, setReveal] = useState(false)
@@ -114,7 +114,7 @@ export default function KbApiPage() {
                 ["DELETE", "/sources/{sourceId}/items/{id}", "Remove an item"],
                 ["POST", "/sources/{sourceId}/sync", "Trigger a resync"],
               ].map(([m, p, d]) => (
-                <li key={p} className="flex flex-wrap items-center gap-2 px-4 py-2">
+                <li key={`${m} ${p}`} className="flex flex-wrap items-center gap-2 px-4 py-2">
                   <Badge variant="outline" className="w-16 justify-center font-mono text-[11px]">{m}</Badge>
                   <code className="min-w-0 flex-1 truncate font-mono text-xs">{p}</code>
                   <span className="text-xs text-muted-foreground">{d}</span>

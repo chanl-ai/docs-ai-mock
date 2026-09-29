@@ -27,7 +27,7 @@ export default function KbRetrievalPage() {
   const { base } = useWs()
   const { admin } = useRole()
   const kb = useMock((s) => s.kbs.find((k) => k.id === params.kbId))!
-  const sources = useMock((s) => s.sources.filter((x) => kb.sources.some((l) => l.sourceId === x.id)))
+  const sources = useMock((s) => s.sources).filter((x) => kb.sources.some((l) => l.sourceId === x.id))
   const items = useMock((s) => s.items)
   const settingsWs = useMock((s) => s.settings)
   const updateRetrieval = useMock((s) => s.updateRetrieval)

@@ -29,7 +29,7 @@ export default function KbCurationPage() {
   const params = useParams<{ kbId: string }>()
   const { base } = useWs()
   const kb = useMock((s) => s.kbs.find((k) => k.id === params.kbId))!
-  const issues = useMock((s) => s.curation.filter((c) => c.kbId === kb.id))
+  const issues = useMock((s) => s.curation).filter((c) => c.kbId === kb.id)
   const setStatus = useMock((s) => s.setCurationStatus)
   const excludeItem = useMock((s) => s.excludeItem)
   const verifyItem = useMock((s) => s.verifyItem)

@@ -29,7 +29,7 @@ export default function KbEvalsPage() {
   const { base } = useWs()
   const { admin } = useRole()
   const kb = useMock((s) => s.kbs.find((k) => k.id === params.kbId))!
-  const questions = useMock((s) => s.testQuestions.filter((q) => q.kbId === kb.id))
+  const questions = useMock((s) => s.testQuestions).filter((q) => q.kbId === kb.id)
   const runTestSet = useMock((s) => s.runTestSet)
   const addTestQuestion = useMock((s) => s.addTestQuestion)
   const removeTestQuestion = useMock((s) => s.removeTestQuestion)
