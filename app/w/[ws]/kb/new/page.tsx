@@ -1,5 +1,5 @@
-import KbListPage from "../page"
+import { KbList } from "@/components/knowledge/kb-list"
 
 export default function NewKbPage() {
-  return <KbListPage initialCreateOpen />
+  return <KbList initialCreateOpen />
 }
