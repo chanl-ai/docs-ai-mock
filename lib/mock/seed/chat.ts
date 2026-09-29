@@ -1,0 +1,180 @@
+import type { Thread } from "../types"
+import { ago, daysAgo } from "./time"
+
+export const threads: Thread[] = [
+  {
+    id: "th_1",
+    title: "Refund window and NSF fee",
+    startedBy: { kind: "member", name: "Priya Raman" },
+    channel: "app",
+    kbIds: ["kb_support", "kb_people"],
+    toolsEnabled: true,
+    ownerId: "u_priya",
+    createdAt: ago(2),
+    lastMessageAt: ago(1.5),
+    feedback: { up: 1, down: 0 },
+    messages: [
+      { id: "m1", role: "user", content: "What is the refund window for annual plans?", at: ago(2) },
+      {
+        id: "m2",
+        role: "assistant",
+        content: "Annual plans can be refunded in full within 30 days of the charge [1]. After 30 days the remaining months are credited pro rata rather than refunded [2].",
+        at: ago(1.99),
+        citations: [
+          { n: 1, documentId: "src_pricing_crawl_it_23", title: "Annual plans", section: "Cancellation and refunds", version: "v3.1", snippet: "Annual plans may be cancelled for a full refund within 30 days of the initial charge.", url: "https://www.northwind.example/pricing/annual-plans" },
+          { n: 2, documentId: "src_branch_faq_it_0", title: "Branch FAQ", section: "Q: Can a customer cancel an annual plan?", version: "v1.3", snippet: "After the first 30 days we credit the unused months back to the account." },
+        ],
+        feedback: "up",
+      },
+      { id: "m3", role: "user", content: "And can you check the balance on account 004512779301?", at: ago(1.6) },
+      {
+        id: "m4",
+        role: "assistant",
+        content: "Account 004512779301 is an Everyday chequing account held by J. Alvarez with an available balance of CAD 2,410.55. The account is open.",
+        at: ago(1.5),
+        toolCall: { toolName: "Account lookup", input: { accountNumber: "004512779301" }, output: { accountId: "acc_8f21", status: "open", product: "Everyday chequing", balance: 2410.55, currency: "CAD" }, status: "success", durationMs: 312, executionId: "exec_running1" },
+      },
+    ],
+  },
+  {
+    id: "th_2",
+    title: "Origination fee on a $300k SBL",
+    startedBy: { kind: "mcp", name: "Support bot (claude-desktop)" },
+    channel: "mcp",
+    kbIds: ["kb_lending"],
+    toolsEnabled: false,
+    ownerId: "u_tom",
+    createdAt: daysAgo(1),
+    lastMessageAt: daysAgo(1),
+    feedback: { up: 0, down: 0 },
+    messages: [
+      { id: "m1", role: "user", content: "origination fee on a small business loan of 300k, unsecured", at: daysAgo(1) },
+      {
+        id: "m2",
+        role: "assistant",
+        content: "For small business term loans above $250,000 the origination fee is 0.75% of principal, minimum $1,500 and maximum $7,500 [1]. On $300,000 that is $2,250. The fee is deducted at funding and is not refundable [2].",
+        at: daysAgo(1),
+        citations: [
+          { n: 1, documentId: "src_lending_policies_it_2", title: "Fee schedule 2026 Q3", section: "Business lending · row 14", version: "v6.0", snippet: "Small business term loan > $250k: 0.75%, min $1,500, max $7,500." },
+          { n: 2, documentId: "src_lending_policies_it_1", title: "Lending policy v6 — small business", section: "7.2 Fees at funding", page: 19, version: "v6.0", snippet: "Origination fees are deducted from the advance at funding and are not refundable." },
+        ],
+        structured: [
+          { label: "Origination fee", value: "0.75", unit: "%", from: "Fee schedule 2026 Q3 · row 14" },
+          { label: "On $300,000", value: "2,250", unit: "CAD", from: "computed" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "th_3",
+    title: "Halifax branch opening dress code",
+    startedBy: { kind: "member", name: "Dan Whitfield" },
+    channel: "app",
+    kbIds: ["kb_people"],
+    toolsEnabled: false,
+    ownerId: "u_dan",
+    createdAt: daysAgo(2),
+    lastMessageAt: daysAgo(2),
+    feedback: { up: 0, down: 1 },
+    messages: [
+      { id: "m1", role: "user", content: "What is the dress code for the Halifax branch opening?", at: daysAgo(2) },
+      { id: "m2", role: "assistant", content: "I could not find that in the knowledge base.", at: daysAgo(2), noAnswer: true, feedback: "down" },
+    ],
+  },
+  {
+    id: "th_4",
+    title: "Payments 5xx incident",
+    startedBy: { kind: "mcp", name: "On-call assistant (cursor)" },
+    channel: "mcp",
+    kbIds: ["kb_eng"],
+    toolsEnabled: true,
+    ownerId: "u_marcus",
+    createdAt: daysAgo(3),
+    lastMessageAt: daysAgo(3),
+    feedback: { up: 1, down: 0 },
+    messages: [
+      { id: "m1", role: "user", content: "payments api 5xx spiking, who do I page", at: daysAgo(3) },
+      {
+        id: "m2",
+        role: "assistant",
+        content: "Page the Payments on-call through the payments-primary rotation and open a SEV2 if the error rate is above 2% for five minutes[^1]. Escalate to Platform on-call after 15 minutes[^2].",
+        at: daysAgo(3),
+        citations: [
+          { n: 1, documentId: "src_eng_confluence_it_0", title: "Incident response runbook", section: "Paging and severity", version: "v5.0", snippet: "Payments 5xx above 2% for 5 minutes = SEV2. Page payments-primary." },
+          { n: 2, documentId: "src_eng_confluence_it_1", title: "On-call rotation", section: "Escalation", version: "v3.4", snippet: "Escalation: service on-call → platform on-call → director on duty." },
+        ],
+        feedback: "up",
+      },
+    ],
+  },
+  {
+    id: "th_5",
+    title: "USD account",
+    startedBy: { kind: "api_key", name: "help-widget" },
+    channel: "public",
+    kbIds: ["kb_support"],
+    toolsEnabled: false,
+    ownerId: "public",
+    createdAt: daysAgo(4),
+    lastMessageAt: daysAgo(4),
+    feedback: { up: 0, down: 1 },
+    messages: [
+      { id: "m1", role: "user", content: "Do you offer a USD account?", at: daysAgo(4) },
+      { id: "m2", role: "assistant", content: "I could not find that. Call 1-800-555-0142 or visit a branch.", at: daysAgo(4), noAnswer: true, feedback: "down" },
+    ],
+  },
+  {
+    id: "th_6",
+    title: "Vacation carry-over",
+    startedBy: { kind: "member", name: "Sofia Lindqvist" },
+    channel: "app",
+    kbIds: ["kb_people"],
+    toolsEnabled: false,
+    ownerId: "u_sofia",
+    createdAt: daysAgo(6),
+    lastMessageAt: daysAgo(6),
+    feedback: { up: 0, down: 0 },
+    messages: [
+      { id: "m1", role: "user", content: "Can I carry vacation days into next year?", at: daysAgo(6) },
+      {
+        id: "m2",
+        role: "assistant",
+        content: "Up to five days can be carried into the next calendar year with manager approval; anything above that is paid out in January [1].",
+        at: daysAgo(6),
+        citations: [{ n: 1, documentId: "src_hr_sharepoint_it_6", title: "Vacation and statutory holidays", section: "4. Carry-over", page: 2, version: "v2.3", snippet: "A maximum of 5 days may be carried over with written manager approval." }],
+      },
+    ],
+  },
+]
+
+export const chatReplies: { matchers: string[]; content: string; citations?: Thread["messages"][number]["citations"]; toolCall?: Thread["messages"][number]["toolCall"]; noAnswer?: boolean }[] = [
+  {
+    matchers: ["refund", "annual"],
+    content: "Annual plans can be refunded in full within 30 days of the charge [1]. After 30 days the remaining months are credited pro rata rather than refunded [2].",
+    citations: [
+      { n: 1, documentId: "src_pricing_crawl_it_23", title: "Annual plans", section: "Cancellation and refunds", version: "v3.1", snippet: "Annual plans may be cancelled for a full refund within 30 days of the initial charge.", url: "https://www.northwind.example/pricing/annual-plans" },
+      { n: 2, documentId: "src_branch_faq_it_0", title: "Branch FAQ", section: "Q: Can a customer cancel an annual plan?", version: "v1.3", snippet: "After the first 30 days we credit the unused months back to the account." },
+    ],
+  },
+  {
+    matchers: ["parental", "top-up", "maternity"],
+    content: "Northwind tops up EI to 90% of base salary for 18 weeks for the birth parent and 8 weeks for the other parent [1]. Twelve months of service are required at the start of leave [1].",
+    citations: [{ n: 1, documentId: "src_hr_sharepoint_it_0", title: "Parental leave policy", section: "3. Top-up", page: 2, version: "v4.1", snippet: "Top-up to 90% of base salary: 18 weeks birth parent, 8 weeks other parent." }],
+  },
+  {
+    matchers: ["balance", "account 0", "look up account"],
+    content: "Account 004512779301 is an Everyday chequing account held by J. Alvarez with an available balance of CAD 2,410.55. The account is open.",
+    toolCall: { toolName: "Account lookup", input: { accountNumber: "004512779301" }, output: { accountId: "acc_8f21", status: "open", product: "Everyday chequing", balance: 2410.55, currency: "CAD" }, status: "success", durationMs: 298, executionId: "exec_running1" },
+  },
+  {
+    matchers: ["origination", "fee"],
+    content: "For small business term loans above $250,000 the origination fee is 0.75% of principal, minimum $1,500 and maximum $7,500 [1].",
+    citations: [{ n: 1, documentId: "src_lending_policies_it_2", title: "Fee schedule 2026 Q3", section: "Business lending · row 14", version: "v6.0", snippet: "Small business term loan > $250k: 0.75%, min $1,500, max $7,500." }],
+  },
+  {
+    matchers: ["page", "on-call", "5xx", "incident"],
+    content: "Page the Payments on-call through the payments-primary rotation and open a SEV2 if the error rate is above 2% for five minutes[^1].",
+    citations: [{ n: 1, documentId: "src_eng_confluence_it_0", title: "Incident response runbook", section: "Paging and severity", version: "v5.0", snippet: "Payments 5xx above 2% for 5 minutes = SEV2. Page payments-primary." }],
+  },
+  { matchers: ["halifax", "dress code", "usd account", "crypto"], content: "I could not find that in the knowledge base.", noAnswer: true },
+]
