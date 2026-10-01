@@ -1,0 +1,1308 @@
+<title>Docs AI Screens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f7f7f5;--card:#ffffff;--fg:#1a1a1a;--muted:#5f6368;--border:#dcdcd7;--line:#e8e8e3;
+  --accent:#2f5bea;--accent-soft:#e8eefc;
+  --ok:#1f7a3e;--ok-soft:#e3f3e8;--warn:#9a6300;--warn-soft:#fff3d6;--err:#b3261e;--err-soft:#fbe4e2;
+  --new:#4a3fb5;--new-soft:#ebe8fb;--rew:#9a6300;--rew-soft:#fff3d6;--ex:#3b6d4b;--ex-soft:#e3f3e8;
+  --code-bg:#f0f0ec;--wf-bg:#fbfbf9;--wf-line:#9a9a94;--wf-fill:#ededea;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#121315;--card:#1b1d20;--fg:#ececea;--muted:#a0a49f;--border:#33363a;--line:#2a2d31;
+    --accent:#8aa4ff;--accent-soft:#1f2740;
+    --ok:#6fcf8f;--ok-soft:#173023;--warn:#f0c060;--warn-soft:#3a2d10;--err:#f28b82;--err-soft:#3d1f1c;
+    --new:#b9b0ff;--new-soft:#2a2650;--rew:#f0c060;--rew-soft:#3a2d10;--ex:#8fd6a6;--ex-soft:#173023;
+    --code-bg:#24272b;--wf-bg:#17191c;--wf-line:#6d7176;--wf-fill:#26292d;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#121315;--card:#1b1d20;--fg:#ececea;--muted:#a0a49f;--border:#33363a;--line:#2a2d31;
+  --accent:#8aa4ff;--accent-soft:#1f2740;
+  --ok:#6fcf8f;--ok-soft:#173023;--warn:#f0c060;--warn-soft:#3a2d10;--err:#f28b82;--err-soft:#3d1f1c;
+  --new:#b9b0ff;--new-soft:#2a2650;--rew:#f0c060;--rew-soft:#3a2d10;--ex:#8fd6a6;--ex-soft:#173023;
+  --code-bg:#24272b;--wf-bg:#17191c;--wf-line:#6d7176;--wf-fill:#26292d;
+}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.55;margin:0;padding-block:24px;padding-inline:16px}
+.wrap{max-width:1040px;margin:0 auto}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .25em}
+h2{font-size:1.45rem;margin:2.2em 0 .5em;padding-top:.6em;border-top:1px solid var(--line)}
+h3{font-size:1.15rem;margin:1.8em 0 .4em}
+h4{font-size:1rem;margin:1.2em 0 .3em}
+p{margin:.4em 0 .8em}
+a{color:var(--accent)}
+code,pre{font-family:var(--mono);font-size:.86em}
+code{background:var(--code-bg);padding:.1em .35em;border-radius:4px}
+pre{background:var(--code-bg);padding:12px 14px;border-radius:8px;overflow-x:auto;line-height:1.45}
+pre code{background:none;padding:0}
+.lede{color:var(--muted);font-size:1.05rem;max-width:70ch}
+.meta{color:var(--muted);font-size:.9rem}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;vertical-align:top;padding:7px 10px;border-bottom:1px solid var(--line)}
+th{font-weight:600;background:var(--code-bg)}
+.tw{overflow-x:auto;margin:.6em 0 1.2em;border:1px solid var(--line);border-radius:8px}
+.tw table{min-width:640px}
+.tw th,.tw td{white-space:normal}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin:18px 0}
+.screen{scroll-margin-top:16px}
+.screen-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:6px}
+.screen-head h3{margin:0}
+.badge{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.02em;padding:2px 8px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
+.b-new{color:var(--new);background:var(--new-soft)}
+.b-rew{color:var(--rew);background:var(--rew-soft)}
+.b-ex{color:var(--ex);background:var(--ex-soft)}
+.b-role{color:var(--muted);background:var(--code-bg);border-color:var(--line)}
+dl.kv{display:grid;grid-template-columns:minmax(120px,160px) 1fr;gap:4px 14px;margin:.6em 0}
+dl.kv dt{color:var(--muted);font-weight:500}
+dl.kv dd{margin:0}
+@media (max-width:560px){dl.kv{grid-template-columns:1fr}dl.kv dt{margin-top:6px}}
+ul,ol{padding-left:1.3em}
+li{margin:.2em 0}
+.toc{columns:2;column-gap:32px}
+.toc ul{list-style:none;padding:0;margin:0}
+.toc li{break-inside:avoid;margin:.15em 0}
+.toc .grp{font-weight:600;margin-top:.8em}
+@media (max-width:640px){.toc{columns:1}}
+.states{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:.6em 0}
+.state{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.9rem;background:var(--bg)}
+.state b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:2px}
+.callout{border-left:3px solid var(--accent);background:var(--accent-soft);padding:10px 14px;border-radius:0 8px 8px 0;margin:1em 0}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft)}
+/* wireframes */
+.wf{background:var(--wf-bg);border:1px dashed var(--wf-line);border-radius:10px;padding:10px;margin:.8em 0 1.2em;font-family:var(--mono);font-size:.74rem;color:var(--muted);display:grid;gap:8px}
+.wf .r{display:grid;gap:8px}
+.wf .bx{border:1px solid var(--wf-line);border-radius:6px;padding:6px 8px;min-height:30px;background:var(--wf-fill)}
+.wf .bx.tall{min-height:110px}
+.wf .bx.mid{min-height:64px}
+.wf .bx.hi{border-style:dashed;background:transparent}
+.wf .cap{font-family:var(--font);font-size:.72rem;text-align:right;color:var(--muted)}
+.c2{grid-template-columns:1fr 1fr}.c3{grid-template-columns:1fr 1fr 1fr}.c4{grid-template-columns:repeat(4,1fr)}
+.side{grid-template-columns:180px 1fr}.side-r{grid-template-columns:1fr 240px}
+@media (max-width:640px){.c2,.c3,.c4,.side,.side-r{grid-template-columns:1fr}}
+.flow ol li{margin:.35em 0}
+.small{font-size:.86rem}
+hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.legend{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:.4em 0 1em}
+</style>
+
+<div class="wrap">
+
+<h1>Docs AI screens</h1>
+<p class="lede">The UI specification for Docs AI: every screen, its route, who uses it, what it is built from, what a person can do on it, its states, and the data it needs. A front-end team builds from this page with the app's shadcn/ui component library and the existing dashboard components.</p>
+<p class="meta">Status: current. Version 1, 2026-09-29. Companion documents: the knowledge architecture spec (section 7 of the Python port dev spec) for the source plugin, ACL, sync and retrieval model.</p>
+
+<div class="legend">
+  <span class="badge b-ex">Existing</span><span class="small">screen exists in the current dashboard code and keeps its shape</span>
+  <span class="badge b-rew">Reworked</span><span class="small">exists, but its model, layout or controls change</span>
+  <span class="badge b-new">New</span><span class="small">no equivalent exists today</span>
+</div>
+
+<h2 id="toc">Table of contents</h2>
+<div class="toc">
+<ul>
+<li class="grp">Foundations</li>
+<li><a href="#what">1. What Docs AI is</a></li>
+<li><a href="#model">2. Information model</a></li>
+<li><a href="#conventions">3. Conventions used in this spec</a></li>
+<li><a href="#nav">4. Navigation map</a></li>
+<li class="grp">Entry and account</li>
+<li><a href="#s-login">5.1 Login</a></li>
+<li><a href="#s-signup">5.2 Sign up</a></li>
+<li><a href="#s-forgot">5.3 Forgot password</a></li>
+<li><a href="#s-autherror">5.4 Auth error</a></li>
+<li><a href="#s-onboarding">5.5 Onboarding</a></li>
+<li><a href="#s-wsselect">5.6 Workspace selection</a></li>
+<li><a href="#s-consent">5.7 OAuth consent</a></li>
+<li><a href="#s-home">5.8 Home</a></li>
+<li class="grp">Knowledge bases</li>
+<li><a href="#s-kb-list">6.1 Knowledge bases list</a></li>
+<li><a href="#s-kb-create">6.2 Create knowledge base</a></li>
+<li><a href="#s-kb-overview">6.3 KB overview and index health</a></li>
+<li><a href="#s-kb-sources">6.4 KB sources</a></li>
+<li><a href="#s-kb-docs">6.5 KB documents and chunks</a></li>
+<li><a href="#s-kb-retrieval">6.6 KB retrieval settings</a></li>
+<li><a href="#s-kb-playground">6.7 KB playground</a></li>
+<li><a href="#s-kb-api">6.8 KB query API</a></li>
+<li><a href="#s-kb-analytics">6.9 KB analytics</a></li>
+<li><a href="#s-kb-access">6.10 KB access</a></li>
+<li><a href="#s-kb-proposals">6.11 KB proposals</a></li>
+<li class="grp">Sources</li>
+<li><a href="#s-src-list">7.1 Sources list</a></li>
+<li><a href="#s-src-add">7.2 Add source</a></li>
+<li><a href="#s-src-detail">7.3 Source detail</a></li>
+<li><a href="#s-src-items">7.4 Source items</a></li>
+<li><a href="#s-src-history">7.5 Sync history and run detail</a></li>
+<li><a href="#s-src-settings">7.6 Source settings</a></li>
+<li class="grp">Files</li>
+<li><a href="#s-files">8.1 File library</a></li>
+<li><a href="#s-file-upload">8.2 Upload files</a></li>
+<li><a href="#s-file-detail">8.3 File detail and preview</a></li>
+<li><a href="#s-storage">8.4 Storage</a></li>
+<li class="grp">Chat</li>
+<li><a href="#s-chat">9.1 Chat</a></li>
+<li><a href="#s-conversations">9.2 Conversations</a></li>
+<li class="grp">Tools</li>
+<li><a href="#s-tools">10.1 Tools list</a></li>
+<li><a href="#s-tool-new">10.2 Create tool</a></li>
+<li><a href="#s-tool-detail">10.3 Tool detail</a></li>
+<li><a href="#s-tool-import">10.4 Import tools</a></li>
+<li><a href="#s-exec">10.5 Executions</a></li>
+<li><a href="#s-exec-detail">10.6 Execution detail</a></li>
+<li class="grp">Connect</li>
+<li><a href="#s-clients">11.1 AI clients</a></li>
+<li><a href="#s-mcp">11.2 MCP servers and tokens</a></li>
+<li><a href="#s-oauth-clients">11.3 OAuth clients</a></li>
+<li><a href="#s-secrets">11.4 Secrets</a></li>
+<li><a href="#s-integrations">11.5 Integrations</a></li>
+<li class="grp">Team and governance</li>
+<li><a href="#s-team">12.1 Team</a></li>
+<li><a href="#s-audit">12.2 Audit log</a></li>
+<li><a href="#s-analytics">12.3 Analytics</a></li>
+<li class="grp">Settings</li>
+<li><a href="#s-set-general">13.1 General</a></li>
+<li><a href="#s-set-security">13.2 Security</a></li>
+<li><a href="#s-set-appearance">13.3 Appearance</a></li>
+<li><a href="#s-set-notifications">13.4 Notifications</a></li>
+<li><a href="#s-set-advanced">13.5 Advanced</a></li>
+<li class="grp">Flows and appendices</li>
+<li><a href="#flows">14. Main flows</a></li>
+<li><a href="#app-parity">A. Reference platform parity</a></li>
+<li><a href="#app-dropped">B. Dropped and deferred</a></li>
+<li><a href="#app-api">C. API index</a></li>
+<li><a href="#app-components">D. Component inventory</a></li>
+<li><a href="#app-states">E. Shared state rules</a></li>
+</ul>
+</div>
+
+<h2 id="what">1. What Docs AI is</h2>
+<p>Docs AI is a workspace product. A team connects its documents and data through <b>sources</b>, organises them into <b>knowledge bases</b>, and lets AI assistants and agents query those knowledge bases through a REST API, an MCP server URL and an in-app chat. A <b>tools</b> layer lets the same assistants act on the team's systems (REST calls, code, connected apps) with secrets kept out of prompts.</p>
+<p>The dashboard exists so that an admin can get data in, see that it indexed correctly, tune how it is retrieved, and hand a working connection to a person or an AI client. Everything below is in service of those four jobs.</p>
+
+<h2 id="model">2. Information model</h2>
+<div class="tw"><table>
+<tr><th>Object</th><th>What it is</th><th>Owned by</th><th>Key fields</th></tr>
+<tr><td><b>Workspace</b></td><td>The tenant. Members, roles, quotas, settings.</td><td>Owner</td><td><code>id, name, slug, plan, storageQuotaBytes, settings</code></td></tr>
+<tr><td><b>Source</b></td><td>A configured way of getting data in. Has a type and a strategy. Produces <b>items</b>.</td><td>Workspace</td><td><code>id, type, name, config, parsing, chunking, rules, metadataMapping, permissions, schedule, status, lastSyncAt, cursor</code></td></tr>
+<tr><td><b>Item</b></td><td>One document produced by a source (a file, a page, a row set). Stable across renames. Carries an ACL.</td><td>Source</td><td><code>id, sourceId, externalId, title, mimeType, url, modifiedAt, contentHash, acl, metadata, status, error, chunkCount</code></td></tr>
+<tr><td><b>Knowledge base (KB)</b></td><td>A queryable index built from one or more sources. A source can feed several KBs. Each KB has its own retrieval settings and access rules.</td><td>Workspace</td><td><code>id, name, description, sourceIds[], retrieval, access, defaultFilters, stats</code></td></tr>
+<tr><td><b>File</b></td><td>An uploaded binary in the library. A file source references files; a file can be used by several sources.</td><td>Workspace</td><td><code>id, name, folderId, sizeBytes, mimeType, version, tags, usedBy[]</code></td></tr>
+<tr><td><b>Tool</b></td><td>An action an assistant can call: REST or code. Testable, versioned, imported from OpenAPI or cURL.</td><td>Workspace</td><td><code>id, name, type, status, version, config</code></td></tr>
+<tr><td><b>Execution</b></td><td>One run of a tool with input, output, status and timing.</td><td>Tool</td><td><code>id, toolId, status, input, output, error, startedAt, durationMs, triggeredBy</code></td></tr>
+<tr><td><b>Secret</b></td><td>An encrypted value tools reference by name.</td><td>Workspace</td><td><code>id, name, type, isActive, expiresAt, lastUsedAt, tags</code></td></tr>
+<tr><td><b>Integration</b></td><td>An OAuth or API-key connection to a third-party app that tools use.</td><td>Workspace</td><td><code>type, status, connectedBy, tools[]</code></td></tr>
+<tr><td><b>MCP token</b> / <b>OAuth client</b></td><td>Credentials an AI client uses to reach the workspace's MCP server.</td><td>Workspace</td><td><code>name, scopes, expiresAt</code> / <code>clientName, redirectUris, allowedScopes</code></td></tr>
+</table></div>
+
+<h3>Sources and knowledge bases, side by side</h3>
+<div class="tw"><table>
+<tr><th></th><th>Source</th><th>Knowledge base</th></tr>
+<tr><td>Question it answers</td><td>Where does content come from and how is it prepared?</td><td>What is searchable, how, and by whom?</td></tr>
+<tr><td>Types</td><td>File upload (PDF, DOCX, XLSX, PPTX, CSV, TXT, MD, HTML), single URL, website crawl or sitemap, plain text or table, connectors: SharePoint/OneDrive, Confluence, Google Drive, GitHub, Notion, Zendesk, Salesforce Knowledge</td><td>One type. Differs by settings.</td></tr>
+<tr><td>Settings</td><td>Parsing (OCR on/off, table extraction), chunking strategy plus size and overlap, include/exclude rules, metadata and tag mapping, permissions (inherit source ACLs or workspace-wide), refresh schedule (manual, daily, weekly, monthly, webhook)</td><td>Search mode (semantic, keyword, hybrid), rerank, chunk limit, relevance threshold, answer synthesis on/off with model, temperature, instructions and citation style, default metadata filters, who can query (members, API keys, MCP server, public share link)</td></tr>
+<tr><td>Operational views</td><td>Sync history, per-item status and errors</td><td>Playground, query API panel, analytics, index health</td></tr>
+<tr><td>Cardinality</td><td>One source feeds 0..n KBs</td><td>One KB reads 1..n sources</td></tr>
+</table></div>
+
+<div class="callout">Changing a source's parsing or chunking re-processes its items once, and every KB that reads the source picks the new chunks up on its next index refresh. Changing a KB's retrieval settings changes nothing about stored chunks; it takes effect on the next query.</div>
+
+<h3>Roles</h3>
+<div class="tw"><table>
+<tr><th>Role</th><th>Can</th><th>Cannot</th></tr>
+<tr><td><b>Owner</b></td><td>Everything, including delete workspace, transfer ownership, manage owners</td><td></td></tr>
+<tr><td><b>Admin</b></td><td>Manage sources, KBs, files, tools, secrets, integrations, tokens, OAuth clients, members up to admin, settings</td><td>Delete workspace, change owner roles, see billing</td></tr>
+<tr><td><b>Member</b></td><td>Use chat and playgrounds, read KBs they are granted, upload files, run tools they are granted, see own executions</td><td>Change settings, sources, KB retrieval or access, secrets, tokens, members</td></tr>
+</table></div>
+<p class="small">The current code has owner, admin and member. This spec keeps those three. Where a screen says "admin", it means admin or owner.</p>
+
+<h2 id="conventions">3. Conventions used in this spec</h2>
+<ul>
+<li><b>Routes</b> are under <code>/w/{workspaceSlug}/...</code>. The current app serves both <code>/dashboard/...</code> and <code>/workspace/{id}/dashboard/...</code>; this spec collapses them into one workspace-scoped tree and keeps <code>/dashboard/...</code> as a redirect to the last-used workspace.</li>
+<li><b>API calls</b> are written in a neutral REST shape: <code>GET /v1/workspaces/{ws}/knowledge-bases</code>. Responses are <code>{ data, meta }</code>; lists paginate with <code>?page&amp;pageSize&amp;sort&amp;q</code> and return <code>meta.total</code>. Errors are <code>{ error: { code, message, details } }</code>.</li>
+<li><b>Components</b> are named as shadcn/ui primitives (Sidebar, DataTable, Dialog, Sheet, Tabs, Command, Form, Card, Badge, Progress, Breadcrumb, Skeleton, Alert, DropdownMenu, Select, Switch, Slider, Textarea, Tooltip, Popover, AlertDialog, ScrollArea, Toggle, Calendar) or existing components in the client tree: <code>components/common/data-table.tsx</code>, <code>data-table-page.tsx</code>, <code>ui/page-header.tsx</code>, <code>ui/loading-state.tsx</code>, <code>ui/confirmation-dialog.tsx</code>, <code>ui/error-dialog.tsx</code>, <code>ui/tag-input.tsx</code>, <code>ui/slug-input.tsx</code>, <code>ui/selectable-card.tsx</code>, <code>ui/date-range-picker.tsx</code>, <code>app-sidebar.tsx</code>, <code>workspace-switcher.tsx</code>, <code>search-command.tsx</code>, <code>chat.tsx</code>, <code>onboarding/wizard.tsx</code>, <code>import-actions/*</code>, <code>actions/details/*</code>, <code>api-settings/*</code>, <code>clients/*</code>, <code>integrations/*</code>, <code>team/*</code>, <code>secrets/*</code>, <code>executions/*</code>, <code>audit-logs/*</code>.</li>
+<li><b>Every list screen</b> uses the shared DataTable with toolbar (search input, faceted filters, view options), pagination, row selection, row actions menu, and column header sorting. This is stated once here and referenced as "standard table" below.</li>
+<li><b>Every screen</b> has the four shared states in Appendix E unless the screen section says otherwise: loading (Skeleton in the region's shape), empty (icon, one sentence, one primary button), error (Alert with retry), permission denied (Alert, no retry, link to Team).</li>
+<li><b>Destructive actions</b> use AlertDialog with the object name typed back only when the dependency count is greater than zero. Otherwise a plain confirm.</li>
+<li><b>Long jobs</b> (ingest, sync, export, import, delete-all) return a <code>taskId</code>; the UI polls <code>GET /v1/workspaces/{ws}/tasks/{taskId}</code> every 2 s while the sheet or page is open, and toasts on completion if the user has navigated away.</li>
+</ul>
+
+<h2 id="nav">4. Navigation map</h2>
+<p>One collapsible Sidebar (shadcn <code>sidebar-07</code> shape, as <code>app-sidebar.tsx</code> does today) with the workspace switcher at the top, grouped items, and the user menu at the bottom. Command palette (<code>search-command.tsx</code>, Cmd+K) jumps to any screen, KB, source, file or tool by name.</p>
+<div class="wf side">
+  <div class="bx tall">
+    <div>[Workspace switcher ▾]</div>
+    <div style="margin-top:6px">Home</div>
+    <div><b>Knowledge</b><br>&nbsp;&nbsp;Knowledge bases<br>&nbsp;&nbsp;Sources<br>&nbsp;&nbsp;Files<br>&nbsp;&nbsp;Chat</div>
+    <div><b>Tools</b><br>&nbsp;&nbsp;Tools<br>&nbsp;&nbsp;Executions<br>&nbsp;&nbsp;Secrets<br>&nbsp;&nbsp;Integrations</div>
+    <div><b>Connect</b><br>&nbsp;&nbsp;AI clients<br>&nbsp;&nbsp;MCP server<br>&nbsp;&nbsp;OAuth clients</div>
+    <div><b>Workspace</b><br>&nbsp;&nbsp;Team<br>&nbsp;&nbsp;Analytics<br>&nbsp;&nbsp;Audit log<br>&nbsp;&nbsp;Settings</div>
+    <div style="margin-top:6px">[User menu ▾]</div>
+  </div>
+  <div class="r">
+    <div class="bx">Breadcrumb · page title · primary action &nbsp;&nbsp;&nbsp;&nbsp; [⌘K search] [help]</div>
+    <div class="bx tall hi">Page content</div>
+  </div>
+</div>
+<div class="tw"><table>
+<tr><th>Group</th><th>Item</th><th>Route</th><th>Screens</th><th>Roles</th></tr>
+<tr><td></td><td>Home</td><td><code>/w/{ws}</code></td><td>5.8</td><td>all</td></tr>
+<tr><td rowspan="4">Knowledge</td><td>Knowledge bases</td><td><code>/w/{ws}/kb</code>, <code>/w/{ws}/kb/{kbId}/(overview|sources|documents|retrieval|playground|api|analytics|access|proposals)</code></td><td>6.1 to 6.11</td><td>member read, admin write</td></tr>
+<tr><td>Sources</td><td><code>/w/{ws}/sources</code>, <code>/w/{ws}/sources/new</code>, <code>/w/{ws}/sources/{sourceId}/(overview|items|history|settings)</code></td><td>7.1 to 7.6</td><td>admin</td></tr>
+<tr><td>Files</td><td><code>/w/{ws}/files</code>, <code>/w/{ws}/files/{fileId}</code>, <code>/w/{ws}/files/storage</code></td><td>8.1 to 8.4</td><td>member upload, admin manage</td></tr>
+<tr><td>Chat</td><td><code>/w/{ws}/chat</code>, <code>/w/{ws}/chat/{threadId}</code>, <code>/w/{ws}/chat/conversations</code></td><td>9.1, 9.2</td><td>all</td></tr>
+<tr><td rowspan="4">Tools</td><td>Tools</td><td><code>/w/{ws}/tools</code>, <code>/w/{ws}/tools/new</code>, <code>/w/{ws}/tools/{toolId}/(general|rest|code|test)</code>, <code>/w/{ws}/tools/import</code></td><td>10.1 to 10.4</td><td>admin write</td></tr>
+<tr><td>Executions</td><td><code>/w/{ws}/executions</code>, <code>/w/{ws}/executions/{executionId}</code></td><td>10.5, 10.6</td><td>member own, admin all</td></tr>
+<tr><td>Secrets</td><td><code>/w/{ws}/secrets</code></td><td>11.4</td><td>admin</td></tr>
+<tr><td>Integrations</td><td><code>/w/{ws}/integrations</code></td><td>11.5</td><td>admin</td></tr>
+<tr><td rowspan="3">Connect</td><td>AI clients</td><td><code>/w/{ws}/connect/clients</code></td><td>11.1</td><td>all</td></tr>
+<tr><td>MCP server</td><td><code>/w/{ws}/connect/mcp</code></td><td>11.2</td><td>member own tokens, admin all</td></tr>
+<tr><td>OAuth clients</td><td><code>/w/{ws}/connect/oauth-clients</code></td><td>11.3</td><td>admin</td></tr>
+<tr><td rowspan="4">Workspace</td><td>Team</td><td><code>/w/{ws}/team</code></td><td>12.1</td><td>member read, admin write</td></tr>
+<tr><td>Analytics</td><td><code>/w/{ws}/analytics</code></td><td>12.3</td><td>admin</td></tr>
+<tr><td>Audit log</td><td><code>/w/{ws}/audit</code></td><td>12.2</td><td>admin</td></tr>
+<tr><td>Settings</td><td><code>/w/{ws}/settings/(general|security|appearance|notifications|advanced)</code></td><td>13.1 to 13.5</td><td>admin (appearance: all)</td></tr>
+<tr><td rowspan="5">Outside the shell</td><td>Login, sign up, forgot password, auth error</td><td><code>/login</code>, <code>/signup</code>, <code>/forgot-password</code>, <code>/auth/error</code></td><td>5.1 to 5.4</td><td>anonymous</td></tr>
+<tr><td>Onboarding</td><td><code>/onboarding</code></td><td>5.5</td><td>signed in, no workspace</td></tr>
+<tr><td>Workspace selection</td><td><code>/workspaces</code></td><td>5.6</td><td>signed in</td></tr>
+<tr><td>OAuth consent</td><td><code>/oauth/authorize</code></td><td>5.7</td><td>signed in</td></tr>
+<tr><td>Public KB share</td><td><code>/share/kb/{shareSlug}</code></td><td>6.10 (share view)</td><td>anonymous with link</td></tr>
+</table></div>
+<p class="small">Moved from today's tree: "Security" tabs (MCP tokens, OAuth clients) become first-class Connect items. "Activity" is renamed Executions. "Clients" becomes Connect → AI clients. "Knowledge Base" (one flat document table) splits into Knowledge bases, Sources and Files.</p>
+
+<h2 id="entry">5. Entry and account</h2>
+
+<div class="card screen" id="s-login">
+<div class="screen-head"><h3>5.1 Login</h3><span class="badge b-ex">Existing</span><span class="badge b-role">anonymous</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/login</code> (<code>app/(auth)/login</code>)</dd>
+<dt>Purpose</dt><dd>Sign an existing user in with email and password or a Google account, then send them to their last workspace.</dd>
+<dt>Layout</dt><dd>Centered single column, max 400px. Logo, Card with Form, provider buttons under a "or" Separator, footer links to sign up and forgot password.</dd>
+<dt>Components</dt><dd>Card, Form (react-hook-form + zod), Input, Button, Separator, Alert. Existing: <code>auth/login-form.tsx</code>, <code>auth/auth-form-wrapper.tsx</code>, <code>auth/auth-redirect-handler.tsx</code>.</dd>
+<dt>Actions</dt><dd>Submit: <code>POST /v1/auth/login</code>; on success read <code>GET /v1/users/me</code> and go to <code>/w/{lastWorkspaceSlug}</code>, or <code>/onboarding</code> when the user has no workspace, or the <code>?next=</code> URL when present (OAuth consent uses this). Google button: provider redirect. "Forgot password" link. "Create account" link.</dd>
+<dt>States</dt><dd>Loading: button spinner, inputs disabled. Error: inline Alert with the server message ("Wrong email or password", "Account disabled"); field errors under inputs. Already signed in: redirect before render.</dd>
+<dt>Validation</dt><dd>Email format; password non-empty. Rate limit message after 5 failures.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-signup">
+<div class="screen-head"><h3>5.2 Sign up</h3><span class="badge b-ex">Existing</span><span class="badge b-role">anonymous</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/signup</code></dd>
+<dt>Purpose</dt><dd>Create an account, then start onboarding.</dd>
+<dt>Layout</dt><dd>Same shell as login.</dd>
+<dt>Components</dt><dd>Card, Form, Input (name, email, password), Checkbox (terms), Button. Existing: <code>auth/signup-form.tsx</code>.</dd>
+<dt>Actions</dt><dd>Submit: <code>POST /v1/auth/register</code> then <code>/onboarding</code>. If the email has a pending workspace invitation, the invitation is accepted on first sign-in and the user lands in that workspace instead.</dd>
+<dt>States</dt><dd>Error: "An account with this email exists" links to login. Loading as login.</dd>
+<dt>Validation</dt><dd>Name 1 to 80 chars; email; password 8+ chars with one number; terms required.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-forgot">
+<div class="screen-head"><h3>5.3 Forgot password</h3><span class="badge b-ex">Existing</span><span class="badge b-role">anonymous</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/forgot-password</code></dd>
+<dt>Purpose</dt><dd>Send a reset link.</dd>
+<dt>Components</dt><dd>Card, Form, Input, Button. Existing: <code>auth/forgot-password-form.tsx</code>.</dd>
+<dt>Actions</dt><dd>Submit: <code>POST /v1/auth/reset</code>. Always shows the same "If that address exists we sent a link" message.</dd>
+<dt>States</dt><dd>Sent state replaces the form with a confirmation and a "Back to login" link.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-autherror">
+<div class="screen-head"><h3>5.4 Auth error</h3><span class="badge b-ex">Existing</span><span class="badge b-role">anonymous</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/auth/error?code=</code></dd>
+<dt>Purpose</dt><dd>Explain a failed provider sign-in or an expired link and offer the way back.</dd>
+<dt>Components</dt><dd>Card, Alert (destructive), Button.</dd>
+<dt>Actions</dt><dd>"Try again" to login; "Contact support" mailto shown as text.</dd>
+<dt>Data</dt><dd>Message map keyed by <code>code</code>: <code>provider_denied</code>, <code>link_expired</code>, <code>account_disabled</code>, <code>unknown</code>.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-onboarding">
+<div class="screen-head"><h3>5.5 Onboarding</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">signed in, no workspace</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/onboarding</code> (<code>app/onboarding</code>, <code>components/onboarding/wizard.tsx</code>)</dd>
+<dt>Purpose</dt><dd>Create the workspace and get the first knowledge base answering a question within five minutes.</dd>
+<dt>Layout</dt><dd>Full-screen wizard, Progress bar at top with "Step n of 4", one Card per step, Back / Continue / Skip footer. Keyboard: Enter continues, Escape goes back (as the existing wizard does).</dd>
+<dt>Components</dt><dd>Existing <code>onboarding/wizard.tsx</code> (steps, validation, optional steps), Form, Input, SlugInput, SelectableCard, Progress, FileDropzone (from 8.2), Badge.</dd>
+<dt>Steps</dt><dd>
+<ol>
+<li><b>Workspace</b>: name, slug (SlugInput; <code>POST /v1/workspaces/check-slug</code> debounced, <code>POST /v1/workspaces/suggest-slug</code>). Creates: <code>POST /v1/workspaces</code>.</li>
+<li><b>First source</b> (optional): three SelectableCards: upload files, paste a website URL, connect an app (opens the connector picker from 7.2 inline). Creates a source and a KB named "{workspace} knowledge" in one call: <code>POST /v1/workspaces/{ws}/quickstart</code> with <code>{ sourceDraft }</code>. Ingestion runs in the background; the step shows the Progress from 7.3.</li>
+<li><b>Ask a question</b> (optional): a single-shot playground (6.7 in compact form) against the new KB. If ingestion is still running, the input is disabled with "Indexing 3 of 12 items".</li>
+<li><b>Connect a client</b> (optional): the AI clients grid (11.1) in compact form; "Create token" inline. Finish goes to Home.</li>
+</ol></dd>
+<dt>States</dt><dd>Error on step 1 (slug taken) inline. Step 2 ingestion failure shows the error and lets the user continue; the failed source stays visible in Sources.</dd>
+<dt>Validation</dt><dd>Name 2 to 60 chars; slug 3 to 40 chars, lowercase, hyphens, unique.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-wsselect">
+<div class="screen-head"><h3>5.6 Workspace selection</h3><span class="badge b-ex">Existing</span><span class="badge b-role">signed in</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/workspaces</code>; also rendered inline by the dashboard layout when no workspace resolves (<code>workspace-selection-prompt.tsx</code>, <code>workspace-switcher.tsx</code>).</dd>
+<dt>Purpose</dt><dd>Pick a workspace or create one.</dd>
+<dt>Components</dt><dd>Card list of workspaces (name, role Badge, member count), Button "Create workspace" (Dialog with name and slug), pending invitations list with Accept / Decline.</dd>
+<dt>Actions</dt><dd>Select: <code>PATCH /v1/users/me/last-workspace</code> then navigate. Create: <code>POST /v1/workspaces</code>. Accept invite: <code>POST /v1/invitations/{id}/accept</code>.</dd>
+<dt>Data</dt><dd><code>GET /v1/users/me/workspaces</code>, <code>GET /v1/users/me/invitations</code>.</dd>
+<dt>States</dt><dd>Empty: "You are not in a workspace yet" with Create and a note that invitations arrive by email. Error: Alert with retry. The switcher in the sidebar shows the same list in a DropdownMenu.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-consent">
+<div class="screen-head"><h3>5.7 OAuth consent</h3><span class="badge b-ex">Existing</span><span class="badge b-role">signed in</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/oauth/authorize?client_id&amp;redirect_uri&amp;scope&amp;state&amp;code_challenge</code> (<code>app/oauth/authorize</code>)</dd>
+<dt>Purpose</dt><dd>Let a person approve an AI application's request to use a workspace's MCP server on their behalf.</dd>
+<dt>Layout</dt><dd>Centered Card: client name and logo, "wants to access {workspace}", workspace Select when the user has more than one, scope list with plain-language descriptions, Deny / Allow buttons.</dd>
+<dt>Components</dt><dd>Card, Select, Badge per scope, Button, Alert.</dd>
+<dt>Actions</dt><dd>Allow: <code>POST /v1/oauth/authorize/consent { clientId, workspaceId, scopes, state }</code> then redirect to <code>redirect_uri</code> with code. Deny: redirect with <code>error=access_denied</code>. Not signed in: go to <code>/login?next=</code> then return.</dd>
+<dt>Data</dt><dd><code>GET /v1/oauth/clients/{clientId}/public</code> for name, logo and allowed scopes; <code>GET /v1/users/me/workspaces</code>.</dd>
+<dt>States</dt><dd>Error: unknown client, redirect URI mismatch, unsupported scope: Alert, no buttons. Permission denied: user is not a member of any workspace the client is registered in.</dd>
+<dt>Validation</dt><dd>Requested scopes must be a subset of the client's <code>allowedScopes</code>; extra scopes are shown struck through and dropped.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-home">
+<div class="screen-head"><h3>5.8 Home</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">all</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}</code> (today <code>dashboard/page.tsx</code> with <code>section-cards.tsx</code>, <code>chart-area-interactive.tsx</code>)</dd>
+<dt>Purpose</dt><dd>Show whether the workspace is healthy and what needs attention, then get the person to the right place.</dd>
+<dt>Layout</dt><dd>Four stat Cards in a row (wrap to 2 then 1). Below: two-column region, left "Needs attention" list, right "Recent activity". Bottom: queries per day chart (7d/30d/90d ToggleGroup).</dd>
+<dt>Components</dt><dd>Card, Badge, Chart (existing <code>ui/chart.tsx</code>), ToggleGroup, Button, Skeleton. Existing <code>section-cards.tsx</code> becomes the stat row.</dd>
+<dt>Stat cards</dt><dd>Knowledge bases (count, indexed docs), Sources (count, failed count in red), Queries last 7 days (with change), Tool executions last 7 days (success rate).</dd>
+<dt>Needs attention</dt><dd>Rows for: failed syncs (link to 7.5), stale items past the KB freshness threshold, quota above 80%, expiring tokens and secrets within 7 days, pending proposals. Each row has a Badge and a link. Hidden when empty, replaced by "All clear".</dd>
+<dt>Actions</dt><dd>Quick actions: New knowledge base, Add source, Upload files, Open chat. All navigate.</dd>
+<dt>Data</dt><dd><code>GET /v1/workspaces/{ws}/overview?range=7d</code> returning stats, attention items and the series. One call; no client-side joins.</dd>
+<dt>States</dt><dd>Empty (no KB yet): the stat row is replaced by a getting-started Card with the three onboarding actions. Member role sees the same page without tokens and secrets attention rows.</dd>
+</dl>
+</div>
+
+<h2 id="kb">6. Knowledge bases</h2>
+<p>A knowledge base page is one route family with a Tabs strip under a shared header. The header (PageHeader) shows the KB name, description, an index-health Badge (Healthy / Indexing / Degraded / Failed), "Last refreshed 4 min ago", and a primary "Open playground" button with a DropdownMenu for Refresh index, Duplicate, Export, Delete.</p>
+<div class="wf">
+  <div class="bx">Breadcrumb: Knowledge bases / Support docs &nbsp;&nbsp; [Healthy] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Open playground ▾]</div>
+  <div class="bx">Tabs: Overview · Sources · Documents · Retrieval · Playground · API · Analytics · Access · Proposals (3)</div>
+  <div class="bx tall hi">Tab content</div>
+</div>
+
+<div class="card screen" id="s-kb-list">
+<div class="screen-head"><h3>6.1 Knowledge bases list</h3><span class="badge b-new">New</span><span class="badge b-role">member read · admin write</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/kb</code></dd>
+<dt>Purpose</dt><dd>See every knowledge base, its health and size, and open or create one.</dd>
+<dt>Who</dt><dd>Admins managing KBs; members finding the one they may query.</dd>
+<dt>Layout</dt><dd>PageHeader with "New knowledge base". Standard table. Optional card view Toggle (Card grid) for small workspaces; default is table.</dd>
+<dt>Components</dt><dd>PageHeader, DataTable (existing <code>common/data-table.tsx</code>), Badge, Progress (index progress when Indexing), DropdownMenu row actions, Command palette entry.</dd>
+<dt>Columns</dt><dd>Name (link), Health Badge, Sources (count with Tooltip listing names), Documents, Chunks, Last refreshed, Queries 7d, Access (icons: members, API, MCP, public), Actions.</dd>
+<dt>Actions</dt><dd>New (6.2). Row: Open, Open playground, Refresh index (<code>POST /v1/workspaces/{ws}/knowledge-bases/{kb}/refresh</code>), Duplicate (<code>POST .../{kb}/duplicate</code>, copies settings and source links, not chunks), Delete (AlertDialog; shows count of API keys, MCP tokens and share links that reference it; <code>DELETE .../{kb}</code>). Bulk: Refresh, Delete.</dd>
+<dt>Filters</dt><dd>Health, Access, Source (faceted); search by name.</dd>
+<dt>Data</dt><dd><code>GET /v1/workspaces/{ws}/knowledge-bases?page&amp;q&amp;health&amp;access</code>. Rows come with <code>stats</code> embedded.</dd>
+<dt>States</dt><dd>Empty: "No knowledge bases yet. A knowledge base is a searchable index built from one or more sources." Primary: New knowledge base; secondary: Add a source first. Member with no readable KB: same empty text with "Ask an admin for access".</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-kb-create">
+<div class="screen-head"><h3>6.2 Create knowledge base</h3><span class="badge b-new">New</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/kb/new</code> (Sheet over the list on desktop, full page under 768px)</dd>
+<dt>Purpose</dt><dd>Name a KB, choose the sources it reads, and start with sensible retrieval defaults.</dd>
+<dt>Layout</dt><dd>Three-step Form inside a Sheet: Basics, Sources, Retrieval preset. Footer: Back / Next / Create. Progress dots.</dd>
+<dt>Components</dt><dd>Sheet, Form, Input, Textarea, DataTable with checkbox selection (sources), SelectableCard (presets), Badge, Button. Existing <code>ui/selectable-card.tsx</code>.</dd>
+<dt>Step 1 Basics</dt><dd>Name (2 to 80 chars, unique in workspace), description (0 to 500), icon colour Select.</dd>
+<dt>Step 2 Sources</dt><dd>Selectable table of existing sources (name, type, items, last sync). "Add a new source" opens 7.2 in a nested Sheet and returns with it pre-selected. At least one source is required; a warning (not a block) when a selected source has never synced.</dd>
+<dt>Step 3 Preset</dt><dd>Three SelectableCards: <b>Balanced</b> (hybrid, rerank on, 8 chunks, threshold 0.5, synthesis on), <b>Precise</b> (hybrid, rerank on, 5 chunks, 0.65, synthesis on, temperature 0), <b>Raw retrieval</b> (hybrid, rerank off, 10 chunks, 0.4, synthesis off). "You can change all of this on the Retrieval tab" note.</dd>
+<dt>Actions</dt><dd>Create: <code>POST /v1/workspaces/{ws}/knowledge-bases { name, description, sourceIds, retrieval }</code> then navigate to Overview, which shows the first index build in progress.</dd>
+<dt>States</dt><dd>Error on name conflict inline. Sources step empty: message plus "Add a source" button; Create disabled.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-kb-overview">
+<div class="screen-head"><h3>6.3 KB overview and index health</h3><span class="badge b-new">New</span><span class="badge b-role">member read · admin act</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/kb/{kbId}</code> (Overview tab)</dd>
+<dt>Purpose</dt><dd>Answer "is this KB in a good state to query?" in one glance and show where the problems are.</dd>
+<dt>Layout</dt><dd>Stat Cards row: Documents, Chunks, Last refreshed, Failures, Stale items. Below left: Sources card (list with per-source status and item counts, link to Sources tab). Below right: Health card with the reasons behind the Badge. Bottom: Recent index jobs table (started, duration, items processed, failed, status).</dd>
+<dt>Components</dt><dd>Card, Badge, Progress, Table, Button, Alert, Tooltip.</dd>
+<dt>Health rules</dt><dd>Healthy: last refresh succeeded and failures = 0. Indexing: a job is running (Progress with "n of m items"). Degraded: last refresh succeeded with failures &gt; 0 or stale items &gt; 10% of documents. Failed: last refresh failed. Rules are evaluated on the server and returned as <code>health.reasons[]</code>.</dd>
+<dt>Actions</dt><dd>Refresh index (<code>POST .../{kb}/refresh</code>; returns <code>taskId</code>). Retry failed items (<code>POST .../{kb}/retry-failed</code>). View failures (navigates to Documents tab filtered <code>status=failed</code>). View stale (Documents filtered <code>freshness=stale</code>). Cancel running job (<code>POST /v1/workspaces/{ws}/tasks/{taskId}/cancel</code>).</dd>
+<dt>Data</dt><dd><code>GET /v1/workspaces/{ws}/knowledge-bases/{kb}</code> (includes <code>stats</code>, <code>health</code>, <code>sources[]</code> summaries); <code>GET .../{kb}/jobs?pageSize=10</code>.</dd>
+<dt>States</dt><dd>Loading: Skeleton in card shapes. Empty (KB has never built): Health card reads "Never indexed" with a Build button. Error: Alert with retry. Member: sees everything, action buttons hidden.</dd>
+</dl>
+<div class="wf">
+  <div class="r c4"><div class="bx">Documents<br><b>1,204</b></div><div class="bx">Chunks<br><b>18,930</b></div><div class="bx">Failures<br><b>3</b> [view]</div><div class="bx">Stale<br><b>41</b> [view]</div></div>
+  <div class="r c2"><div class="bx mid">Sources<br>SharePoint · Policies · 812 items · synced 12m<br>Website · help.example.com · 380 · synced 2h<br>Files · Onboarding PDFs · 12 · synced 3d</div><div class="bx mid">Health: Degraded<br>· 3 items failed to parse (SharePoint)<br>· 41 items older than 90 days<br>[Retry failed] [Refresh index]</div></div>
+  <div class="bx mid">Recent index jobs (table)</div>
+</div>
+</div>
+
+<div class="card screen" id="s-kb-sources">
+<div class="screen-head"><h3>6.4 KB sources</h3><span class="badge b-new">New</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/kb/{kbId}/sources</code></dd>
+<dt>Purpose</dt><dd>Control which sources feed this KB, and narrow what each contributes.</dd>
+<dt>Layout</dt><dd>Standard table of attached sources plus "Attach source" button.</dd>
+<dt>Columns</dt><dd>Source (name, type icon), Items contributed, Filter (Badge "All" or "Rule"), Last sync, Status, Actions.</dd>
+<dt>Actions</dt><dd>Attach: Dialog with a selectable table of unattached sources (<code>POST .../{kb}/sources { sourceId }</code>). Per-row: Edit contribution (Sheet with an include/exclude rule builder scoped to this KB: path glob, metadata equals, tag in; <code>PATCH .../{kb}/sources/{sourceId} { rules }</code>), Open source (7.3), Detach (AlertDialog: "Chunks from this source are removed from the index on the next refresh"; <code>DELETE .../{kb}/sources/{sourceId}</code>).</dd>
+<dt>Data</dt><dd><code>GET .../{kb}/sources</code>, <code>GET /v1/workspaces/{ws}/sources?unattachedTo={kb}</code>.</dd>
+<dt>States</dt><dd>Empty: "This knowledge base reads no sources" plus Attach. A detached source that no other KB uses shows a Tooltip suggesting deletion from Sources.</dd>
+<dt>Validation</dt><dd>Cannot detach the last source while the KB has a public share link enabled (server returns 409, UI explains and links to Access).</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-kb-docs">
+<div class="screen-head"><h3>6.5 KB documents and chunks</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">member read · admin act</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/kb/{kbId}/documents</code>, detail Sheet at <code>?doc={itemId}</code></dd>
+<dt>Purpose</dt><dd>Browse what is actually in the index, find a document, and inspect its chunks.</dd>
+<dt>Layout</dt><dd>Standard table with faceted filters. Row click opens a Sheet (right, 560px) with Tabs: Content, Chunks, Metadata, History.</dd>
+<dt>Components</dt><dd>DataTable (the existing <code>knowledge-base/data-table.tsx</code> family with faceted filter and view options), Sheet, Tabs, Badge, ScrollArea, Code block for chunk text, Tooltip.</dd>
+<dt>Columns</dt><dd>Title (with type icon), Source, Status (Indexed / Pending / Processing / Failed / Partial), Chunks, Modified at source, Freshness (Fresh / Stale with days), Tags, Queries 30d.</dd>
+<dt>Filters</dt><dd>Source, Status, Freshness, Tag, Metadata key=value (DynamicFilters, existing <code>custom/dynamic-filters.tsx</code>), search by title.</dd>
+<dt>Sheet: Content</dt><dd>Parsed text with section anchors; "Open at source" link; page count for PDFs.</dd>
+<dt>Sheet: Chunks</dt><dd>List of chunks: index, token count, location (page, heading or line range), chunk type (content, question, answer, summary), text. Search within chunks. <code>GET .../{kb}/documents/{item}/chunks</code>.</dd>
+<dt>Sheet: Metadata</dt><dd>Key-value table from the source mapping, plus ACL principals shown as Badges (admin only). Editable tags (TagInput) when the item comes from a file or text source; connector items are read-only with a note "Mapped from the source".</dd>
+<dt>Sheet: History</dt><dd>Revisions (n, author or "sync", date, size delta) with Diff dialog and Restore (existing pattern: <code>revision-diff-dialog</code>). Applies to text and file items; connector items show sync events instead.</dd>
+<dt>Actions</dt><dd>Reprocess item (<code>POST .../items/{item}/reprocess</code>), Exclude from this KB (adds a rule, 6.4), Mark verified / unverified (<code>POST|DELETE .../items/{item}/verify</code>; shows a Verified Badge and resets freshness), Set owner (<code>PATCH .../items/{item}/owner</code>), Open at source. Bulk: Reprocess, Exclude, Add tag.</dd>
+<dt>Data</dt><dd><code>GET .../{kb}/documents?page&amp;q&amp;sourceId&amp;status&amp;freshness&amp;tag&amp;meta[key]=value</code>; <code>GET .../documents/{item}</code>.</dd>
+<dt>States</dt><dd>Empty (never indexed): points to Overview. Empty (filtered): "No documents match" with Clear filters. Failed row: error text on hover and in the Sheet header Alert with Reprocess.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-kb-retrieval">
+<div class="screen-head"><h3>6.6 KB retrieval settings</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/kb/{kbId}/retrieval</code> (today: workspace-wide <code>kb-settings-dialog</code>; now per KB)</dd>
+<dt>Purpose</dt><dd>Decide how a query becomes chunks and, optionally, an answer.</dd>
+<dt>Layout</dt><dd>One Form in three Cards stacked: Search, Answer synthesis, Defaults. Sticky footer with Save and "Test in playground" (opens 6.7 with unsaved values as the draft). Two-column at 1024px: Form left, a read-only "Effective settings" summary Card right.</dd>
+<dt>Components</dt><dd>Form, Card, Select, Switch, Slider with numeric Input, Textarea, RadioGroup, TagInput, DynamicFilters, Tooltip per field, Button.</dd>
+<dt>Search card</dt><dd>
+<ul>
+<li>Search mode: RadioGroup Semantic / Keyword / Hybrid (default hybrid; hybrid fuses with reciprocal rank fusion, k=60; the Tooltip says that).</li>
+<li>Rerank: Switch; when on, a Select for the reranker (hosted default, cross-encoder). Reranks the top 50.</li>
+<li>Chunk limit: Slider 1 to 20, default 8. Chunks returned per query.</li>
+<li>Relevance threshold: Slider 0.00 to 1.00 step 0.05, default 0.50. Hits below are dropped; if none remain the response is a no-answer.</li>
+<li>Query rewriting: Switch; when on, a Textarea "Rewrite instructions" (0 to 1000 chars). The model reformulates the user's message before searching.</li>
+<li>Search scope: multi-Select of attached sources (default all).</li>
+</ul></dd>
+<dt>Answer synthesis card</dt><dd>
+<ul>
+<li>Synthesise answer: Switch (default on). Off returns chunks only.</li>
+<li>Model: Select from <code>GET /v1/models?capability=chat</code> (grouped by provider; default the workspace default).</li>
+<li>Temperature: Slider 0 to 1 step 0.1, default 0.1.</li>
+<li>Max answer tokens: Input 64 to 4096, default 800.</li>
+<li>System instructions: Textarea 0 to 4000 chars with a starter: "Answer only from the provided context. If the context does not contain the answer, say you do not know."</li>
+<li>Citation style: RadioGroup Inline markers [1] / Footnotes / Source links only / None.</li>
+<li>Include source chunks in response: Switch (default on; affects API and MCP payload size).</li>
+<li>No-answer message: Input (default "I could not find that in the knowledge base."); used by chat and by the API when synthesis is on and nothing passes the threshold.</li>
+</ul></dd>
+<dt>Defaults card</dt><dd>Default metadata filters (DynamicFilters: key, operator in/equals/not, value; applied to every query unless the caller overrides with explicit filters and has <code>filters:override</code> scope). Default tags include / exclude (TagInput). "Include untagged" Switch.</dd>
+<dt>Actions</dt><dd>Save: <code>PATCH /v1/workspaces/{ws}/knowledge-bases/{kb}/retrieval</code> with the full settings object. Reset to preset (Balanced / Precise / Raw). Test in playground.</dd>
+<dt>Data</dt><dd><code>GET .../{kb}/retrieval</code>, <code>GET /v1/models</code>, <code>GET .../{kb}/metadata-keys</code> (for the filter builder's key suggestions).</dd>
+<dt>States</dt><dd>Dirty form: leave-page AlertDialog. Save error: field-level from <code>error.details</code>. Member: read-only view with controls disabled and a note.</dd>
+<dt>Validation</dt><dd>Ranges as listed. When synthesis is off, the synthesis controls collapse. Chunk limit above 12 with rerank off shows a Tooltip warning about answer quality.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-kb-playground">
+<div class="screen-head"><h3>6.7 KB playground</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">member · admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/kb/{kbId}/playground</code> (today: <code>test-query-dialog</code> plus <code>playground/chat</code>)</dd>
+<dt>Purpose</dt><dd>Ask a question, see the answer and the exact chunks behind it, and change settings until it is right.</dd>
+<dt>Layout</dt><dd>Two columns at 1024px and up: left 2/3 is the conversation area (question input at the bottom, results above); right 1/3 is a Settings rail that mirrors 6.6 in compact form with a "Draft" Badge when values differ from saved. Under 1024px the rail becomes a Sheet opened by a "Settings" button.</dd>
+<dt>Components</dt><dd>Textarea with submit, Card per result, Tabs (Answer / Chunks / Request), Badge, Accordion (chunk detail), Slider, Select, Switch, Sheet, Button, Tooltip, Code block, Progress (for streaming).</dd>
+<dt>Result card</dt><dd>
+<ul>
+<li><b>Answer</b> tab: streamed answer with citation markers; each marker is a Popover with title, snippet, location and "Open at source". Latency Badge (retrieval ms, synthesis ms). "No answer" state shows the no-answer message and the top rejected chunks with their scores so the person can see why.</li>
+<li><b>Chunks</b> tab: ordered list with score, source, title, location, text; Toggle "Show rejected (below threshold)". Each chunk has "Exclude document from KB" and "Open document".</li>
+<li><b>Request</b> tab: the exact JSON body that reproduced this result, with "Copy as cURL" (links to 6.8).</li>
+</ul></dd>
+<dt>Settings rail</dt><dd>Search mode, Rerank, Chunk limit, Threshold, Synthesis on/off, Model, Temperature, Instructions (Textarea), Metadata filters, Tags. Buttons: "Save as KB defaults" (admin; <code>PATCH .../retrieval</code>) and "Reset to saved".</dd>
+<dt>Actions</dt><dd>Ask: <code>POST /v1/workspaces/{ws}/knowledge-bases/{kb}/query { query, settings?: {...overrides}, filters?, stream: true }</code> (SSE). Save draft as defaults. Pin a question to the Test set (<code>POST .../{kb}/test-questions</code>); "Run test set" runs all pinned questions and shows a table of answer, top score, latency, pass/fail by a "must cite document" rule set per question.</dd>
+<dt>Data</dt><dd><code>GET .../{kb}/retrieval</code>, <code>GET .../{kb}/test-questions</code>.</dd>
+<dt>States</dt><dd>Empty: three suggested questions generated from document titles (<code>GET .../{kb}/suggested-questions</code>). Indexing: input enabled with a banner "Index is refreshing; results may be partial". Failed KB: input disabled with link to Overview. Error on query: Alert inside the result card with Retry. Member without query permission: permission denied state.</dd>
+</dl>
+<div class="wf side-r">
+  <div class="r">
+    <div class="bx tall">Q: What is the refund window for annual plans?<br><br>A: Annual plans can be refunded within 30 days [1]. After that, credit is prorated [2].<br>[Answer · Chunks (8) · Request] &nbsp; 412 ms retrieval · 1.9 s synthesis</div>
+    <div class="bx">Ask a question…  [Send]</div>
+  </div>
+  <div class="bx tall">Settings [Draft]<br>Mode: Hybrid<br>Rerank: on<br>Chunks: 8<br>Threshold: 0.50<br>Synthesis: on · gpt-4o<br>Temp: 0.1<br>Instructions ▸<br>Filters ▸<br>[Save as defaults]</div>
+</div>
+</div>
+
+<div class="card screen" id="s-kb-api">
+<div class="screen-head"><h3>6.8 KB query API</h3><span class="badge b-new">New</span><span class="badge b-role">member · admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/kb/{kbId}/api</code></dd>
+<dt>Purpose</dt><dd>Give a developer everything needed to query this KB from code in under a minute.</dd>
+<dt>Layout</dt><dd>Left: endpoint Card (method, URL with copy), API key Select (existing keys with this KB in scope, or "Create key" inline), then Tabs with code samples: cURL, JavaScript, Python, MCP. Right: request and response schema Cards.</dd>
+<dt>Components</dt><dd>Card, Tabs, Code block with copy Button, Select, Dialog (create key), Badge, Accordion (schema fields).</dd>
+<dt>Endpoints shown</dt><dd>
+<pre><code>POST /v1/knowledge-bases/{kbId}/query
+{
+  "query": "string, 1..2000 chars",
+  "settings": { "searchMode", "rerank", "chunkLimit", "threshold",
+                "synthesis", "model", "temperature", "instructions",
+                "citationStyle" },       // each optional, overrides KB defaults
+  "filters": { "tags": { "include": [], "exclude": [], "includeUntagged": true },
+               "metadata": [ { "key", "op", "value" } ],
+               "sourceIds": [] },
+  "stream": false
+}
+→ { "answer": "string | null", "citations": [ { "documentId", "chunkId", "title", "url", "location", "snippet" } ],
+    "chunks": [ { "chunkId", "documentId", "score", "text", "location", "metadata" } ],
+    "noAnswer": false, "timing": { "retrievalMs", "synthesisMs" } }
+
+GET  /v1/knowledge-bases/{kbId}/documents?q&amp;tag&amp;meta[key]=v      // list
+GET  /v1/knowledge-bases/{kbId}/documents/{id}                   // get with chunks
+PATCH /v1/knowledge-bases/{kbId}/documents/{id} { tags, metadata } // tags and metadata
+POST /v1/sources/{sourceId}/items  (multipart or { url } or { text })  // add to a source
+DELETE /v1/sources/{sourceId}/items/{id}
+POST /v1/sources/{sourceId}/sync                                  // trigger resync</code></pre>
+The samples are rendered with the selected key masked and a "Reveal" Toggle; keys are never fetched in full after creation, so Reveal only works in the session that created the key.</dd>
+<dt>Actions</dt><dd>Copy sample. Create API key (Dialog: name, scopes checkboxes with <code>kb:query</code> preselected and this KB in scope, expiry Select; <code>POST /v1/workspaces/{ws}/api-keys</code>; shows the key once). "Try it" sends the sample from the browser using the session (not the key) and shows the response inline.</dd>
+<dt>Data</dt><dd><code>GET /v1/workspaces/{ws}/api-keys?kb={kb}</code>, <code>GET .../{kb}/retrieval</code> (to show effective defaults in the schema card).</dd>
+<dt>States</dt><dd>No keys: Select shows "Create your first key"; samples render with <code>$DOCS_AI_API_KEY</code> placeholder. Member: can see samples and their own keys; cannot create keys with <code>kb:write</code> scope.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-kb-analytics">
+<div class="screen-head"><h3>6.9 KB analytics</h3><span class="badge b-new">New</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/kb/{kbId}/analytics?range=7d</code></dd>
+<dt>Purpose</dt><dd>Show whether people get answers, and which documents carry the load.</dd>
+<dt>Layout</dt><dd>Range ToggleGroup (24h, 7d, 30d, 90d) and DateRangePicker. Stat Cards: Queries, No-answer rate, Median latency, Distinct callers. Charts: queries per day (bar) with no-answer overlay (line); queries by caller type (members, API keys, MCP, public) stacked. Tables: Top documents (title, citations, queries), Top queries (query text, count, no-answer share), No-answer queries (query, count, last seen) with "Ask in playground" row action.</dd>
+<dt>Components</dt><dd>ToggleGroup, DateRangePicker (existing), Card, Chart (existing <code>ui/chart.tsx</code> on Recharts), DataTable, Button.</dd>
+<dt>Actions</dt><dd>Export CSV (<code>GET .../{kb}/analytics/export?range</code>). Row: Ask in playground (prefills 6.7). Top document: Open document (6.5).</dd>
+<dt>Data</dt><dd><code>GET .../{kb}/analytics?from&amp;to</code> returning all series and tables in one payload.</dd>
+<dt>States</dt><dd>Empty (no queries): chart region shows "No queries in this range" with a link to the playground and API tabs. Loading: Skeleton cards and chart placeholder.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-kb-access">
+<div class="screen-head"><h3>6.10 KB access</h3><span class="badge b-new">New</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/kb/{kbId}/access</code>; public view at <code>/share/kb/{shareSlug}</code></dd>
+<dt>Purpose</dt><dd>Decide who and what can query this KB, and how document permissions from sources apply.</dd>
+<dt>Layout</dt><dd>Four Cards: Members, API keys, MCP server, Public share link. A fifth Card "Document permissions" at the bottom.</dd>
+<dt>Members card</dt><dd>RadioGroup: All workspace members / Selected members and groups. When Selected, a Command-based picker adds members (Avatar, name, role Badge) to a list with Remove. <code>PATCH .../{kb}/access { members: { mode, principals[] } }</code>.</dd>
+<dt>API keys card</dt><dd>Table of keys with this KB in scope (name, scopes, last used, expires). "Add key" opens the same create Dialog as 6.8. Row: Remove from KB, Revoke (AlertDialog). Also a Switch "Allow any workspace API key with kb:query scope" (default off).</dd>
+<dt>MCP server card</dt><dd>Switch "Expose to MCP server" (default on). When on: the MCP tool name this KB appears under (<code>search_{slug}</code>, editable, unique), and a note that MCP tokens and OAuth clients with <code>knowledge:read</code> reach it. Link to 11.2.</dd>
+<dt>Public share link card</dt><dd>Switch "Enable public link". When on: URL with copy, a slug Input (SlugInput), a Select "Answer style" (chat, single answer), optional password Input, rate limit Select (60 / 300 / 1000 per hour), "Show source links" Switch. Public page is a minimal chat with the KB name and the no-answer message; no login. <code>PATCH .../{kb}/access { public: {...} }</code>.</dd>
+<dt>Document permissions card</dt><dd>RadioGroup: <b>Respect source permissions</b> (each caller only sees chunks whose ACL includes them; API keys and public links see only <code>workspace:*</code> items unless a key is given explicit principals) / <b>Workspace-wide</b> (every chunk is visible to every allowed caller; shown with a warning Alert that connector ACLs are ignored). Per-key principal editor (TagInput of <code>user:</code>, <code>group:</code> principals) inside the API keys row menu.</dd>
+<dt>Data</dt><dd><code>GET .../{kb}/access</code>, <code>GET /v1/workspaces/{ws}/members</code>, <code>GET /v1/workspaces/{ws}/groups</code> (IdP groups synced at login).</dd>
+<dt>States</dt><dd>Public link off: card body collapsed to the Switch and one sentence. Error when enabling public link on a KB whose sources have non-workspace ACLs and "Respect source permissions" is set: Alert "Public callers will only see workspace-wide documents (n of m)". Member: permission denied.</dd>
+<dt>Validation</dt><dd>Share slug 3 to 40 chars, unique; password 8+ when set; MCP tool name <code>^[a-z][a-z0-9_]{2,40}$</code>.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-kb-proposals">
+<div class="screen-head"><h3>6.11 KB proposals</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">member propose · admin review</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/kb/{kbId}/proposals?status=pending</code> (today: the Capture / Proposal sidebar sections and <code>changes-tab</code>)</dd>
+<dt>Purpose</dt><dd>Review changes that an assistant or a member proposed to text and file documents before they enter the index.</dd>
+<dt>Layout</dt><dd>Standard table with status Tabs (Pending, Approved, Rejected). Row click opens a Sheet with the diff.</dd>
+<dt>Columns</dt><dd>Document, Kind (Append / Update / New page), Proposed by (member or agent name), When, Size delta, Status.</dd>
+<dt>Sheet</dt><dd>Header with document and kind; Diff view (existing <code>revision-diff-dialog</code> pattern: side by side over 900px, unified below); the proposer's note; Approve / Reject with optional comment.</dd>
+<dt>Actions</dt><dd>Approve: <code>POST .../proposals/{id}/approve</code> (writes a revision, reprocesses the item). Reject: <code>POST .../proposals/{id}/reject { reason }</code>. Bulk approve and reject. "Automation" Select in the header (Act / Suggest): whether assistant writes land directly as revertible revisions or always come here first (<code>PATCH .../{kb} { automation }</code>).</dd>
+<dt>Data</dt><dd><code>GET .../{kb}/proposals?status</code>, <code>GET .../proposals/{id}</code>.</dd>
+<dt>States</dt><dd>Empty: "No pending proposals". Proposals on connector items are not possible (connector content is read-only); the API returns 409 and the chat explains that to the assistant.</dd>
+</dl>
+</div>
+
+<h2 id="sources">7. Sources</h2>
+<p>Sources are the intake side. Each source has one type, one set of processing settings, and produces items. The source pages are admin-only; members see the source name on KB pages but cannot open these routes.</p>
+
+<div class="card screen" id="s-src-list">
+<div class="screen-head"><h3>7.1 Sources list</h3><span class="badge b-new">New</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/sources</code></dd>
+<dt>Purpose</dt><dd>See every intake, its sync state, and what it feeds.</dd>
+<dt>Layout</dt><dd>PageHeader with "Add source". Standard table.</dd>
+<dt>Columns</dt><dd>Name (with type icon and connector label), Type, Items (indexed / failed), Used by (KB count with Tooltip names), Schedule (Manual, Daily 02:00, Weekly Mon, Monthly 1st, Webhook), Last sync (relative, with status Badge Success / Partial / Failed / Running), Next sync, Actions.</dd>
+<dt>Filters</dt><dd>Type, Status, Schedule, Used by KB; search by name.</dd>
+<dt>Actions</dt><dd>Add source (7.2). Row: Open, Sync now (<code>POST /v1/workspaces/{ws}/sources/{id}/sync</code>), Pause / Resume schedule (<code>PATCH .../sources/{id} { paused }</code>), Duplicate settings (opens 7.2 prefilled), Delete (AlertDialog listing KBs that read it and item count; "Chunks in n knowledge bases will be removed"; <code>DELETE .../sources/{id}</code>). Bulk: Sync now, Pause, Delete.</dd>
+<dt>Data</dt><dd><code>GET /v1/workspaces/{ws}/sources?page&amp;q&amp;type&amp;status</code> with <code>usedBy[]</code> and <code>lastRun</code> embedded.</dd>
+<dt>States</dt><dd>Empty: "No sources. A source is how content gets in: upload files, crawl a site, or connect an app." Primary: Add source. Running rows show an indeterminate Progress under the status Badge and poll every 5 s.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-src-add">
+<div class="screen-head"><h3>7.2 Add source</h3><span class="badge b-new">New</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/sources/new?type=</code> (full page; also opened as a Sheet from 6.2 and 5.5)</dd>
+<dt>Purpose</dt><dd>Configure an intake end to end: what to fetch, how to prepare it, what to keep, and when to refresh.</dd>
+<dt>Layout</dt><dd>Wizard (existing <code>onboarding/wizard.tsx</code> shape): step rail on the left at 900px and up (vertical Stepper), otherwise Progress at the top. Steps: 1 Type, 2 Connection and scope, 3 Parsing and chunking, 4 Rules and metadata, 5 Permissions and schedule, 6 Review. Every step after 1 has "Save as draft".</dd>
+<dt>Components</dt><dd>SelectableCard grid, Form, Input, Textarea, Select, Switch, Slider, RadioGroup, TagInput, FileDropzone (8.2), Progress, Alert, Badge, Tooltip, Dialog (OAuth popup fallback), Table (preview), Accordion (advanced).</dd>
+</dl>
+
+<h4>Step 1: Type</h4>
+<p>SelectableCard grid in three groups. Card shows icon, name, one line, and a Badge "Needs connection" when an integration must be connected first.</p>
+<div class="tw"><table>
+<tr><th>Group</th><th>Type</th><th>Strategy field(s)</th><th>Change detection</th><th>Permissions available</th></tr>
+<tr><td rowspan="4">Content you provide</td><td>File upload</td><td>Files from the library or new upload (PDF, DOCX, XLSX, PPTX, CSV, TXT, MD, HTML; 50 MB each)</td><td>Replace or new version in Files</td><td>Workspace-wide, or a member/group list</td></tr>
+<tr><td>Single URL</td><td>One or more URLs, one per line; optional header auth for intranets</td><td>ETag, then content hash</td><td>Workspace-wide</td></tr>
+<tr><td>Website crawl or sitemap</td><td>Start URL or sitemap URL, depth 1 to 5, max pages 10 to 5000, same-domain only, include/exclude path patterns, respect robots</td><td>Sitemap lastmod, ETag, content hash</td><td>Workspace-wide</td></tr>
+<tr><td>Plain text or table</td><td>Textarea (Markdown), or a pasted/uploaded CSV/XLSX where each row becomes a chunk and headers become field names; choose the title column and the metadata columns</td><td>Edit in place creates a revision</td><td>Workspace-wide or list</td></tr>
+<tr><td rowspan="7">Connected apps</td><td>SharePoint / OneDrive</td><td>Site, then libraries or folders (tree picker); include Office and PDF; app-only or delegated auth</td><td>Drive delta queries; webhook subscriptions trigger early syncs</td><td>Inherit item permissions (mapped to directory users and groups) or workspace-wide</td></tr>
+<tr><td>Confluence</td><td>Site, spaces (multi-Select), optional parent page, include attachments</td><td>Last-modified since cursor</td><td>Inherit space and page restrictions, or workspace-wide</td></tr>
+<tr><td>Google Drive</td><td>Shared drives and folders (tree picker); export Docs, Sheets, Slides</td><td>Changes feed with page token</td><td>Inherit file permissions, or workspace-wide</td></tr>
+<tr><td>GitHub</td><td>Installation, repos, branch, path globs (default <code>docs/**, **/*.md</code>)</td><td>Head commit compare; push webhooks</td><td>Inherit repo visibility and collaborators, or workspace-wide</td></tr>
+<tr><td>Notion</td><td>Pages and databases (picker), include child pages</td><td>Last-edited since cursor</td><td>Workspace-wide (Notion sharing is not mirrored)</td></tr>
+<tr><td>Zendesk</td><td>Subdomain, help center categories and sections, locales, published only</td><td>Incremental articles API</td><td>Workspace-wide, or "agents only" for internal articles</td></tr>
+<tr><td>Salesforce Knowledge</td><td>Org, article types, data categories, language, published channel</td><td>LastModifiedDate since cursor</td><td>Workspace-wide</td></tr>
+</table></div>
+<p class="small">Connectors are rendered from <code>GET /v1/knowledge/source-kinds</code>, which returns each plugin's display name, auth spec and a JSON schema for its config. The wizard renders Step 2 from that schema (Form from JSON schema) so a new connector needs no UI change. The seven above are the minimum set.</p>
+
+<h4>Step 2: Connection and scope</h4>
+<ul>
+<li>Connected apps: a Connection Select listing existing integrations of that type (11.5) with "Connect new" (OAuth popup; on block, fallback Dialog with the link). Then the scope picker for the type (tree picker with checkboxes and search; <code>GET /v1/integrations/{id}/browse?path=</code>). A "Preview" Button lists the first 50 items that would be fetched (<code>POST /v1/workspaces/{ws}/sources/preview</code>) in a Table with title, path, size, modified.</li>
+<li>File upload: FileDropzone plus "Choose from library" (Dialog with the 8.1 table in selection mode).</li>
+<li>URL and crawl: inputs as in the table; Preview fetches the start page and shows discovered link count.</li>
+<li>Text or table: Textarea, or the CSV/XLSX dropzone with a column mapping Table (column → Title / Content / Metadata key / Ignore).</li>
+</ul>
+
+<h4>Step 3: Parsing and chunking</h4>
+<ul>
+<li>OCR: Switch (default off). Tooltip: runs on scanned PDFs and images; slower and uses credits.</li>
+<li>Table extraction: Switch (default on). Tables in PDF and DOCX become row chunks with headers as field names.</li>
+<li>Vision for figures: Switch (default off). Describes images and charts into text.</li>
+<li>Remove HTML and boilerplate: Switch (default on for web types).</li>
+<li>Chunking strategy: RadioGroup: <b>Structure aware</b> (headings, paragraphs, sentences; default), <b>Smart topics</b> (LLM groups by topic), <b>FAQ optimised</b> (LLM generates sample questions per section), <b>Topic headers</b> (adds a contextual summary line to each chunk), <b>Summarise</b> (key points only), <b>Rows</b> (tables only, fixed). LLM strategies show a Badge "Uses credits on each sync".</li>
+<li>Chunk size: Slider 100 to 2000 tokens, default 512. Overlap: Slider 0 to 500, default 50. Both disabled for Rows.</li>
+<li>Language: Select (auto by default).</li>
+<li>"Preview chunks" Button: runs the pipeline on the first preview item and shows the first 10 chunks (<code>POST /v1/workspaces/{ws}/sources/preview-chunks</code>).</li>
+</ul>
+
+<h4>Step 4: Rules and metadata</h4>
+<ul>
+<li>Include and exclude rules: list of rows, each a Select (Path glob / Title contains / MIME type / Modified after / Size under) and a value. Include rules are OR'd, exclude rules win. Live count "n of m preview items match".</li>
+<li>Metadata mapping: Table of rows (Key ← Source field). Source fields come from the type (SharePoint columns, Confluence labels, GitHub path segments, CSV columns, URL path segment n, page title). Static values allowed ("locale = en"). Keys are suggested from <code>GET /v1/workspaces/{ws}/metadata-keys</code>.</li>
+<li>Tags: TagInput; applied to every item. Optional "Tag from field" row (for example, Confluence label → tag).</li>
+<li>Title: Select (source title / first heading / filename).</li>
+</ul>
+
+<h4>Step 5: Permissions and schedule</h4>
+<ul>
+<li>Permissions: RadioGroup: <b>Inherit from source</b> (shown only when the type supports it; explains the principal mapping and that directory groups sync at login), <b>Workspace-wide</b>, <b>Selected members and groups</b> (Command picker).</li>
+<li>Refresh schedule: RadioGroup Manual / Daily (time Select) / Weekly (day + time) / Monthly (day + time) / Webhook triggered (shows the webhook URL and secret with copy, plus "also run daily as safety net" Switch, default on). Connectors that support subscriptions show "Subscribe to change notifications" Switch.</li>
+<li>Deleted at source: Select "Remove from index" (default) / "Keep and mark stale".</li>
+<li>Stale after: Input days (default from workspace, 90).</li>
+<li>Notify on failure: Switch (goes to 13.4 recipients).</li>
+</ul>
+
+<h4>Step 6: Review</h4>
+<p>Summary Card per step with Edit links. Checkbox "Attach to knowledge base" with a multi-Select of KBs (prefilled when opened from 6.2). Primary button: "Create and sync now"; secondary: "Create without syncing".</p>
+<dl class="kv">
+<dt>Actions</dt><dd>Create: <code>POST /v1/workspaces/{ws}/sources { type, name, connectionId, config, parsing, chunking, rules, metadataMapping, tags, permissions, schedule, kbIds }</code>. Sync now: <code>POST .../sources/{id}/sync</code>. Draft: <code>POST .../sources { status: "draft" }</code>. Validate connection: <code>POST .../sources/validate</code> (runs the plugin's validate and returns an actionable message).</dd>
+<dt>States</dt><dd>Type needs a connection that is not present: card shows Connect first; clicking opens 11.5's connect Dialog inline. Validation error on Step 2: Alert with the plugin message ("The app has no access to site X; grant Sites.Read.All"). Preview empty: "No items match; widen the scope or rules". Quota: if the preview exceeds remaining storage or document quota, Step 6 shows a blocking Alert with the numbers and a link to 8.4.</dd>
+<dt>Validation</dt><dd>Name 2 to 80, unique. URL must be http(s) and not a private IP range (server-enforced, UI mirrors the message). Crawl depth 1 to 5; max pages 10 to 5000. Chunk ranges as listed. At least one scope item for connectors. Webhook schedule requires the connector to support it or a manual trigger URL.</dd>
+</dl>
+<div class="wf side">
+  <div class="bx tall">1 Type ✓<br>2 Connection ✓<br><b>3 Parsing</b><br>4 Rules<br>5 Permissions<br>6 Review</div>
+  <div class="r">
+    <div class="bx">Parsing and chunking</div>
+    <div class="bx mid">OCR [off] · Tables [on] · Vision [off] · Remove HTML [on]<br>Strategy: (•) Structure aware ( ) Smart topics ( ) FAQ ( ) Topic headers ( ) Summarise<br>Size ───●─── 512 &nbsp; Overlap ──●───── 50</div>
+    <div class="bx mid hi">Preview chunks (10) …</div>
+    <div class="bx">[Save as draft] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Back] [Next]</div>
+  </div>
+</div>
+</div>
+
+<div class="card screen" id="s-src-detail">
+<div class="screen-head"><h3>7.3 Source detail</h3><span class="badge b-new">New</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/sources/{sourceId}</code> (Overview tab; Tabs: Overview, Items, History, Settings)</dd>
+<dt>Purpose</dt><dd>See the state of one intake and act on it.</dd>
+<dt>Layout</dt><dd>PageHeader: name, type Badge, connection name, status Badge, "Sync now" primary with DropdownMenu (Full resync, Pause schedule, Duplicate, Delete). Stat Cards: Items indexed, Failed, Pending, Last sync (duration), Next sync. Then: Current run Card (Progress "n of m items, k failed", elapsed, Cancel) when running; Used by Card (KB list with links); Recent runs Table (last 5, links to 7.5); Errors Card (top 5 error messages grouped with counts and "View items").</dd>
+<dt>Components</dt><dd>PageHeader, Tabs, Card, Badge, Progress, Table, Button, DropdownMenu, Alert, AlertDialog.</dd>
+<dt>Actions</dt><dd>Sync now (incremental, uses the cursor): <code>POST .../sources/{id}/sync</code>. Full resync (ignores cursor; deletes items not seen): <code>POST .../sources/{id}/sync { full: true }</code> with AlertDialog. Cancel run: <code>POST /v1/workspaces/{ws}/tasks/{taskId}/cancel</code>. Retry failed: <code>POST .../sources/{id}/retry-failed</code>. Pause / Resume. Delete (as 7.1).</dd>
+<dt>Data</dt><dd><code>GET .../sources/{id}</code> (with <code>stats</code>, <code>currentRun</code>, <code>usedBy</code>, <code>errorGroups</code>), <code>GET .../sources/{id}/runs?pageSize=5</code>. Poll every 3 s while <code>currentRun</code> exists.</dd>
+<dt>States</dt><dd>Never synced: stat cards read 0 and a banner "This source has not synced yet" with Sync now. Connection revoked: destructive Alert "Connection to {app} was revoked; reconnect to resume" with a button to 11.5. Paused: Badge and a Resume button in the banner. Draft: banner "Draft; finish setup" linking to the wizard at the first incomplete step.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-src-items">
+<div class="screen-head"><h3>7.4 Source items</h3><span class="badge b-new">New</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/sources/{sourceId}/items?status=</code></dd>
+<dt>Purpose</dt><dd>See every item the source produced, with its status and error, and fix single items.</dd>
+<dt>Layout</dt><dd>Standard table. Row click opens the same document Sheet as 6.5 (Content, Chunks, Metadata, History).</dd>
+<dt>Columns</dt><dd>Title, Path or URL (truncated, copy), Status (Indexed / Pending / Processing / Failed / Partial / Excluded / Deleted at source), Chunks, Size, Modified at source, Last processed, Error (truncated, full in Tooltip).</dd>
+<dt>Filters</dt><dd>Status, MIME type, Error class (parse, fetch, permission, too large, rate limited), Modified range; search by title or path.</dd>
+<dt>Actions</dt><dd>Row: Reprocess (<code>POST .../items/{id}/reprocess</code>), Exclude (adds an exclude rule by path; <code>POST .../sources/{id}/rules { exclude }</code>), Open at source, Download original (files only). Bulk: Reprocess, Exclude. "Export list as CSV".</dd>
+<dt>Data</dt><dd><code>GET .../sources/{id}/items?page&amp;q&amp;status&amp;mime&amp;errorClass</code>.</dd>
+<dt>States</dt><dd>Empty (never synced): link to Sync now. Empty (filtered): Clear filters. Failed rows are tinted with the destructive token at 8% opacity and carry the error Badge.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-src-history">
+<div class="screen-head"><h3>7.5 Sync history and run detail</h3><span class="badge b-new">New</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/sources/{sourceId}/history</code>; run detail Sheet at <code>?run={runId}</code></dd>
+<dt>Purpose</dt><dd>Show what each sync did, and why one failed.</dd>
+<dt>Layout</dt><dd>Table of runs. Row click opens a Sheet: summary Card (trigger: manual / schedule / webhook / full; started, duration, cursor before and after), counts (listed, unchanged, upserted, deleted, failed, skipped by rules), a timeline of phases (list changes → fetch → parse → chunk → embed → upsert) each with duration and status, an Errors Table (item, phase, error class, message, "Reprocess"), and a Log Accordion with the raw job log (ScrollArea, monospace).</dd>
+<dt>Columns</dt><dd>Started, Trigger, Duration, Listed, Changed, Failed, Status, Actions.</dd>
+<dt>Actions</dt><dd>Retry failed items from this run (<code>POST .../runs/{runId}/retry-failed</code>). Download log (<code>GET .../runs/{runId}/log</code>). Re-run with same options.</dd>
+<dt>Data</dt><dd><code>GET .../sources/{id}/runs?page</code>, <code>GET .../runs/{runId}</code>.</dd>
+<dt>States</dt><dd>Running run: Sheet shows live phase Progress and polls. Rate-limited run: status "Backing off" with the retry time from the source's header. Cursor rejected: the summary explains "The saved cursor was rejected; a full listing ran and n unseen items were removed."</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-src-settings">
+<div class="screen-head"><h3>7.6 Source settings</h3><span class="badge b-new">New</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/sources/{sourceId}/settings</code></dd>
+<dt>Purpose</dt><dd>Edit any wizard step after creation.</dd>
+<dt>Layout</dt><dd>The wizard's Steps 2 to 5 as Accordion sections in one Form (Connection and scope, Parsing and chunking, Rules and metadata, Permissions and schedule), plus a Danger Card (Delete source). Sticky Save footer.</dd>
+<dt>Actions</dt><dd>Save: <code>PATCH .../sources/{id}</code>. When parsing or chunking changed, a Dialog asks "Reprocess all n items now?" (Yes runs <code>POST .../sources/{id}/reprocess</code>; No leaves items until the next sync touches them, with a Badge "Settings changed, reprocess pending" on 7.3). When scope or rules changed, the next sync is a full listing. Rotate webhook secret. Delete.</dd>
+<dt>States</dt><dd>Dirty form guard. Connection type cannot be changed; the Type row is read-only with "Create a new source to change type".</dd>
+</dl>
+</div>
+
+<h2 id="files">8. Files</h2>
+
+<div class="card screen" id="s-files">
+<div class="screen-head"><h3>8.1 File library</h3><span class="badge b-new">New</span><span class="badge b-role">member upload · admin manage</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/files?folder=</code></dd>
+<dt>Purpose</dt><dd>Keep every uploaded file in one place, with folders, so a file can be reused by several sources and replaced in one move.</dd>
+<dt>Layout</dt><dd>Left rail (240px, collapses to a Sheet under 900px): folder tree (existing <code>folder-tree-panel</code> pattern; Collapsible rows, drag target). Main: Breadcrumb of the current folder, toolbar (search, Type filter, Tag filter, Used-by filter, Sort, Grid/List Toggle), then the standard table or a Card grid of thumbnails. Storage meter Progress at the bottom of the rail with "4.2 GB of 10 GB" and a link to 8.4.</dd>
+<dt>Components</dt><dd>Sidebar-like rail (ScrollArea, Collapsible), Breadcrumb, DataTable, Card, Badge, Progress, DropdownMenu, Dialog, AlertDialog, ContextMenu, Input, TagInput, Command (move-to picker).</dd>
+<dt>Columns</dt><dd>Name (icon by type), Size, Type, Version, Tags, Used by (Badge "2 sources · 3 KBs", Tooltip lists them), Uploaded by, Modified, Actions.</dd>
+<dt>Actions</dt><dd>Upload (8.2). New folder (Dialog, name 1 to 80). Row: Preview (8.3), Rename (inline Input), Move (Command picker of folders; <code>PATCH /v1/workspaces/{ws}/files/{id} { folderId }</code>), Replace (upload a new version; <code>POST .../files/{id}/versions</code>; sources using the file reprocess it), Download, Add tags (TagInput popover), Add to source (Dialog: pick a file source or create one), Delete (AlertDialog: when <code>usedBy</code> is non-empty it lists the sources and KBs, requires typing the file name, and says "Items from this file are removed from n knowledge bases"; <code>DELETE .../files/{id}</code>). Bulk: Move, Tag, Add to source, Delete. Drag and drop rows onto folders to move. Folder row actions: Rename, Move, Delete (only when empty, otherwise "Move contents first").</dd>
+<dt>Data</dt><dd><code>GET /v1/workspaces/{ws}/files?folderId&amp;q&amp;type&amp;tag&amp;usedBy&amp;sort&amp;page</code>, <code>GET .../folders/tree</code>, <code>GET .../storage</code>.</dd>
+<dt>States</dt><dd>Empty folder: dropzone illustration "Drop files here or Upload". Empty search: Clear. Quota reached: Upload button disabled with Tooltip and a banner linking to 8.4. Member: can upload, rename and tag their own files; cannot delete files used by a source (row action hidden).</dd>
+</dl>
+<div class="wf side">
+  <div class="bx tall">Folders<br>▾ All files<br>&nbsp;&nbsp;▸ Policies<br>&nbsp;&nbsp;▸ Onboarding<br>&nbsp;&nbsp;▸ Product<br><br>Storage ████░░ 4.2/10 GB</div>
+  <div class="r">
+    <div class="bx">All files / Policies &nbsp;&nbsp; [search] [Type▾] [Tag▾] [Used by▾] &nbsp;&nbsp; [Upload] [New folder]</div>
+    <div class="bx tall">Name · Size · Type · Version · Tags · Used by · Modified<br>refund-policy.pdf · 1.2 MB · PDF · v3 · policy · 1 source, 2 KBs · 2d<br>…</div>
+  </div>
+</div>
+</div>
+
+<div class="card screen" id="s-file-upload">
+<div class="screen-head"><h3>8.2 Upload files</h3><span class="badge b-new">New</span><span class="badge b-role">member · admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd>Dialog over 8.1, 7.2 and 5.5; component <code>FileDropzone</code> (new, in <code>components/files/</code>, built on react-dropzone as <code>upload-source-dialog</code> already is)</dd>
+<dt>Purpose</dt><dd>Upload many files at once with visible per-file progress and clear failures.</dd>
+<dt>Layout</dt><dd>Dialog (640px): dropzone area (accepts PDF, DOCX, XLSX, PPTX, CSV, TXT, MD, HTML; 50 MB each; up to 100 files per batch), target folder Select, Tags TagInput applied to all, then a file list with per-row Progress, size, status icon and Remove. Footer: "Upload n files" and a total Progress. "Add to a source after upload" Checkbox with a source Select.</dd>
+<dt>Actions</dt><dd>For each file: <code>POST /v1/workspaces/{ws}/files/upload-url { name, size, mimeType, folderId }</code> → direct PUT to storage with progress events → <code>POST .../files/{id}/complete</code>. Concurrency 3. Cancel per file. Retry per failed file. When the Checkbox is on, the finished file ids are posted to <code>POST .../sources/{id}/items { fileIds }</code>.</dd>
+<dt>States</dt><dd>Rejected on drop (type or size): row shows the reason, is not uploaded, and does not block the rest. Duplicate name in folder: row offers "Replace existing (new version)" or "Keep both (renamed)". Quota exceeded mid-batch: remaining rows fail with "Storage full"; uploaded ones stay. Dialog close during upload: AlertDialog "Uploads in progress will be cancelled".</dd>
+<dt>Validation</dt><dd>MIME sniffed server-side; extension mismatch fails the row.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-file-detail">
+<div class="screen-head"><h3>8.3 File detail and preview</h3><span class="badge b-new">New</span><span class="badge b-role">member · admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/files/{fileId}</code> (Sheet over the library; direct URL renders the library with the Sheet open)</dd>
+<dt>Purpose</dt><dd>See the file, its versions, and everything that depends on it.</dd>
+<dt>Layout</dt><dd>Sheet (720px, full-screen under 768px) with Tabs: Preview, Versions, Usage, Details.</dd>
+<dt>Preview</dt><dd>PDF: paged viewer (pdf.js) with page Input and zoom. DOCX/PPTX/XLSX: server-rendered PDF preview (<code>GET .../files/{id}/preview</code>, generated lazily; Skeleton while generating, up to 20 s, then "Preview unavailable, download instead"). Images: img with zoom. Text, MD, CSV, HTML: text view (CSV as a Table, first 200 rows).</dd>
+<dt>Versions</dt><dd>Table: version, size, uploaded by, date, "Current" Badge. Actions: Download, Make current (<code>POST .../files/{id}/versions/{n}/restore</code>), Upload new version. Note under the table: "Making a version current reprocesses the file in n sources."</dd>
+<dt>Usage</dt><dd>Two lists: Sources that include this file (name, item status, link) and Knowledge bases reached through them (name, health, link). Empty: "Not used by any source" with Add to source.</dd>
+<dt>Details</dt><dd>Name (editable), folder (Move), tags (TagInput), size, type, checksum, uploaded by, created, modified. Danger row: Delete (same rules as 8.1).</dd>
+<dt>Data</dt><dd><code>GET .../files/{id}</code> (with <code>versions[]</code>, <code>usedBy</code>), <code>GET .../files/{id}/preview?page</code>.</dd>
+<dt>States</dt><dd>Preview error: Alert with Download. Member viewing another member's file: Details read-only.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-storage">
+<div class="screen-head"><h3>8.4 Storage</h3><span class="badge b-new">New</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/files/storage</code></dd>
+<dt>Purpose</dt><dd>Show what uses the quota and how to get it back.</dd>
+<dt>Layout</dt><dd>Progress with used / quota and a breakdown bar (files by type, previews, index data). Cards: Largest files (top 20 Table with Delete), Unused files (files with empty <code>usedBy</code>, Table with bulk Delete), Old versions (count and size with "Prune versions older than" Select and a Button).</dd>
+<dt>Actions</dt><dd>Prune versions: <code>POST .../storage/prune-versions { olderThanDays }</code> (AlertDialog with the reclaimed size). Delete unused: bulk <code>DELETE .../files?ids=</code>. Request more storage: opens a mailto shown as text plus the current plan name.</dd>
+<dt>Data</dt><dd><code>GET /v1/workspaces/{ws}/storage</code> (breakdown, largest, unused counts), <code>GET .../files?unused=true</code>.</dd>
+<dt>States</dt><dd>Above 90%: destructive Alert at top. Loading Skeleton. Member: permission denied.</dd>
+</dl>
+</div>
+
+<h2 id="chat">9. Chat</h2>
+
+<div class="card screen" id="s-chat">
+<div class="screen-head"><h3>9.1 Chat</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">all</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/chat</code>, <code>/w/{ws}/chat/{threadId}</code> (today <code>playground/chat</code> with <code>chat.tsx</code>, <code>chat-sidebar.tsx</code>, <code>message.tsx</code>, <code>tool-call-card.tsx</code>, <code>multimodal-input.tsx</code>)</dd>
+<dt>Purpose</dt><dd>Let a member ask the workspace's knowledge and use its tools from inside the app, with the same assistant an external client would get.</dd>
+<dt>Layout</dt><dd>Left thread rail (existing <code>chat-sidebar.tsx</code>: New conversation, search, grouped by day, rename and delete in a DropdownMenu). Main: message list, composer at the bottom. Composer has a "Knowledge bases" multi-Select chip (default: all the member can query) and a "Tools" Toggle. Header: thread title (editable), Share, and a "Sources used" Badge count.</dd>
+<dt>Components</dt><dd>Existing chat components, ScrollArea, Textarea, Popover (citation), Badge, Card (tool call), Dialog (share), DropdownMenu, Skeleton, Tooltip.</dd>
+<dt>Message rendering</dt><dd>Assistant messages render Markdown with citation markers. A marker opens a Popover: document title, KB name, location, snippet, "Open document" (6.5) and "Open at source". Tool calls render as the existing <code>tool-call-card</code> (name, input, output, status, duration) with a link to the execution (10.6). A no-answer turn shows the KB's no-answer message and "Try the playground" for admins.</dd>
+<dt>Actions</dt><dd>Send: <code>POST /v1/workspaces/{ws}/chat/threads/{id}/messages { content, kbIds, toolsEnabled }</code> (SSE stream of text, citations, tool events). New thread: <code>POST .../chat/threads</code>. Rename / delete thread: <code>PUT|DELETE .../threads/{id}</code>. Share: <code>POST .../threads/{id}/share</code> returns a workspace-internal link (members only). Stop generation. Copy message. Regenerate. Thumbs up / down on an answer (<code>POST .../messages/{id}/feedback</code>; feeds 6.9). "Propose an update" on a cited document: opens a Dialog with the assistant's suggested text and creates a proposal (6.11).</dd>
+<dt>Data</dt><dd><code>GET .../chat/threads?page</code>, <code>GET .../threads/{id}/messages</code>, <code>GET /v1/workspaces/{ws}/knowledge-bases?queryable=true</code>.</dd>
+<dt>States</dt><dd>Empty (no thread): greeting (existing <code>greeting.tsx</code>) with three suggested questions from the largest KB and the KB chip. No queryable KB: composer disabled with "No knowledge base is available to you" and, for admins, a link to create one. Streaming: thinking indicator (existing <code>thinking-message.tsx</code>), Stop button. Error mid-stream: the partial message stays with an inline Alert and Retry. Thread not found: 404 state in the main pane, rail still works.</dd>
+<dt>Validation</dt><dd>Message 1 to 8000 chars; attachments (images, PDFs up to 10 MB) accepted by the composer and sent as ephemeral context, never stored as files.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-conversations">
+<div class="screen-head"><h3>9.2 Conversations</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">member own · admin all</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/chat/conversations</code> (today: sidebar item "Conversations", backed by <code>GET /chat/threads</code> and <code>/chat/search/messages</code>)</dd>
+<dt>Purpose</dt><dd>Find any past conversation across the workspace, including those started by AI clients over MCP.</dd>
+<dt>Layout</dt><dd>Standard table. Row click opens the thread read-only in a Sheet, with "Open in chat" when it is the viewer's own.</dd>
+<dt>Columns</dt><dd>Title, Started by (member, API key, MCP client name), Channel (App / API / MCP / Public link), Messages, KBs used, Last message, Feedback (thumbs summary).</dd>
+<dt>Filters</dt><dd>Channel, Member, KB, Date range, Has negative feedback; full-text search over messages (<code>GET .../chat/search/messages?q</code>).</dd>
+<dt>Actions</dt><dd>Open. Delete (own or admin; AlertDialog). Export thread as Markdown. Bulk delete (admin).</dd>
+<dt>Data</dt><dd><code>GET .../chat/threads?scope=workspace&amp;page&amp;q&amp;channel&amp;memberId&amp;kbId&amp;from&amp;to</code>.</dd>
+<dt>States</dt><dd>Member sees only own threads; the Channel filter is hidden. Empty: "No conversations yet" with Open chat.</dd>
+</dl>
+</div>
+
+<h2 id="tools">10. Tools</h2>
+<p>"Tools" replaces the current "Actions" name in the UI. Routes and API keep the same shape as today's actions endpoints with the noun renamed.</p>
+
+<div class="card screen" id="s-tools">
+<div class="screen-head"><h3>10.1 Tools list</h3><span class="badge b-ex">Existing</span><span class="badge b-role">member read · admin write</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/tools</code> (today <code>dashboard/actions</code> with <code>components/actions/columns.tsx</code>, <code>data-table-toolbar.tsx</code>, <code>data-table-row-actions.tsx</code>)</dd>
+<dt>Purpose</dt><dd>See every tool an assistant can call, its status and version, and create, import or test one.</dd>
+<dt>Layout</dt><dd>PageHeader with "New tool" and "Import" (DropdownMenu: OpenAPI, cURL). Standard table.</dd>
+<dt>Columns</dt><dd>Name (with description Tooltip), Type (REST / Code), Status (Active / Inactive / Draft), Version, Integration (Badge when it uses a connection), Executions 7d (with success rate), Updated, Actions.</dd>
+<dt>Actions</dt><dd>Row: Open, Test (opens 10.3 Test tab), Toggle active (<code>PATCH .../tools/{id}/status</code>), Duplicate (<code>POST .../tools/{id}/duplicate</code>), Deploy (code tools; <code>POST .../tools/{id}/deploy</code>), Delete (AlertDialog with execution count; <code>DELETE .../tools/{id}</code>). Bulk: Activate, Deactivate, Delete.</dd>
+<dt>Filters</dt><dd>Type, Status, Integration; search.</dd>
+<dt>Data</dt><dd><code>GET /v1/workspaces/{ws}/tools?page&amp;q&amp;type&amp;status</code> with <code>stats7d</code> embedded.</dd>
+<dt>States</dt><dd>Empty: "No tools yet. Tools let assistants act on your systems." with New tool and Import. Member: read-only table, row actions limited to Open and Test where granted.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-tool-new">
+<div class="screen-head"><h3>10.2 Create tool</h3><span class="badge b-ex">Existing</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/tools/new</code> (today <code>create-action-modal.tsx</code>, <code>action-type-selector.tsx</code>)</dd>
+<dt>Purpose</dt><dd>Pick the tool type and name it; the rest happens on the detail page.</dd>
+<dt>Layout</dt><dd>Dialog: two SelectableCards (REST API, Code execution with language Select from <code>GET .../tools/code-run/languages</code>), name Input, description Textarea. Create goes to 10.3.</dd>
+<dt>Actions</dt><dd><code>POST /v1/workspaces/{ws}/tools { name, description, type, language? }</code>.</dd>
+<dt>Validation</dt><dd>Name 2 to 60 chars, unique, becomes the MCP tool name in snake_case (shown live under the field).</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-tool-detail">
+<div class="screen-head"><h3>10.3 Tool detail</h3><span class="badge b-ex">Existing</span><span class="badge b-role">admin edit · member test where granted</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/tools/{toolId}/(general|rest|code|test)</code> (today <code>actions/[actionId]/details/*</code> with <code>ActionHeader</code>, <code>TabNavigation</code>, <code>GeneralTab</code>, <code>RestTab</code>, <code>CodeTab</code>, <code>TestingSidebar</code>, <code>FormProvider</code>)</dd>
+<dt>Purpose</dt><dd>Configure exactly what the tool does, then prove it works before an assistant can call it.</dd>
+<dt>Layout</dt><dd>Header (name, type Badge, status Switch, version, Save). Tabs: General, REST or Code (by type), Test. On wide screens the Test panel is a right rail (existing <code>TestingSidebar</code>); under 1024px it is the Test tab.</dd>
+<dt>General</dt><dd>Name, description (this is what the assistant reads to decide when to call it; a helper line says so), input schema editor (JSON schema with a form builder: field name, type, required, description, enum), output description, tags, "Requires confirmation" Switch (assistant must ask before running), "Available to members" Switch.</dd>
+<dt>REST</dt><dd>Method Select, URL Input with <code>{{input.x}}</code> and <code>{{secret.NAME}}</code> templating (existing <code>liquid-editor.tsx</code>), Headers table, Query table, Body editor (JSON with templating), Auth Select (None / Secret header / Integration connection with a Select of connected apps), Timeout, Retries, Response mapping (JSONPath to output fields).</dd>
+<dt>Code</dt><dd>File tree (entry file plus extras; <code>GET|POST|PUT|DELETE .../tools/{id}/files</code>), editor (existing CodeTab), language Badge, environment Secrets multi-Select (injected as env), Deploy button with build log Sheet (<code>POST .../tools/{id}/deploy</code>), deployed version Badge.</dd>
+<dt>Test</dt><dd>Input form generated from the schema (or raw JSON Toggle), Run (<code>POST .../tools/{id}/test { input }</code>), result Card (status, duration, output JSON, error, logs), "Save as example" (stored on the tool and shown to assistants), link to the execution. Validate button (<code>POST .../tools/{id}/validate</code>) reports schema and template errors.</dd>
+<dt>Actions</dt><dd>Save: <code>PUT .../tools/{id}</code> (bumps version). Toggle status. Duplicate. Delete. View executions (10.5 filtered).</dd>
+<dt>Data</dt><dd><code>GET .../tools/{id}</code>, <code>GET .../tools/{id}/configuration-schema</code>, <code>GET /v1/workspaces/{ws}/secrets?active=true</code>, <code>GET .../integrations?status=connected</code>.</dd>
+<dt>States</dt><dd>Unsaved changes guard. Test on a draft: allowed. Test error: result Card in destructive style with the message and "Open logs". Secret referenced but missing or inactive: inline Alert on the REST tab with a link to 11.4. Integration disconnected: Alert with Reconnect. Member: read-only config, Test enabled only when "Available to members" is on.</dd>
+<dt>Validation</dt><dd>URL must be absolute; templates must reference declared inputs or existing secrets (validated on Save and on Validate); input schema must be valid JSON schema.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-tool-import">
+<div class="screen-head"><h3>10.4 Import tools</h3><span class="badge b-ex">Existing</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/tools/import?from=openapi|curl</code> (today <code>import-actions-dialog.tsx</code> with <code>import-actions/source-selection, openapi-form, curl-form, actions-preview, configure-step, import-results, progress-indicator</code>)</dd>
+<dt>Purpose</dt><dd>Turn an OpenAPI document or a cURL command into one or many tools without hand-typing them.</dd>
+<dt>Layout</dt><dd>Dialog wizard: Source (URL, paste, or upload for OpenAPI; paste for cURL) → Preview (Table of operations with Checkbox, name, method, path, description; select all / by tag) → Configure (base URL override, auth: Secret or Integration, name prefix, "activate on import" Switch) → Results (created, skipped, failed with reasons).</dd>
+<dt>Actions</dt><dd>Preview: <code>POST .../tools/import/openapi/preview</code> or <code>.../import/curl/preview</code>. Create: <code>POST .../tools/import/openapi/create</code> or <code>.../import/curl/create</code>.</dd>
+<dt>States</dt><dd>Spec parse error: Alert with line and message. Name collision: row Badge "Exists" with Skip / Overwrite / Rename per row. Partial success: Results lists failures with Retry.</dd>
+<dt>Validation</dt><dd>OpenAPI 3.x or Swagger 2; 10 MB max; cURL must contain a URL.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-exec">
+<div class="screen-head"><h3>10.5 Executions</h3><span class="badge b-ex">Existing</span><span class="badge b-role">member own · admin all</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/executions</code> (today "Activity", <code>dashboard/executions</code> with <code>components/executions/*</code>)</dd>
+<dt>Purpose</dt><dd>See what tools ran, for whom, and what failed.</dd>
+<dt>Layout</dt><dd>Standard table with a small stats strip above (Total, Success rate, Median duration for the selected range). Row click opens 10.6 as a Sheet.</dd>
+<dt>Columns</dt><dd>Tool, Status (Pending / Running / Success / Failed / Cancelled), Started, Duration, Triggered by (member, API key, MCP client, chat, test), Retries.</dd>
+<dt>Filters</dt><dd>Tool, Status, Triggered by, Date range (DateRangePicker); search by execution id.</dd>
+<dt>Actions</dt><dd>Row: Open, Re-run with same input (<code>POST .../executions/{id}/rerun</code>), Cancel (running), Copy id. Export CSV.</dd>
+<dt>Data</dt><dd><code>GET /v1/workspaces/{ws}/executions?page&amp;toolId&amp;status&amp;triggeredBy&amp;from&amp;to</code>.</dd>
+<dt>States</dt><dd>Empty: "No executions in this range". Running rows poll every 3 s. Member: own executions only; Triggered by filter hidden.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-exec-detail">
+<div class="screen-head"><h3>10.6 Execution detail</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">member own · admin all</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/executions/{executionId}</code> (Sheet over 10.5; direct URL opens the list with the Sheet)</dd>
+<dt>Purpose</dt><dd>Show one run in full so a failure can be diagnosed without reading server logs.</dd>
+<dt>Layout</dt><dd>Header: tool name (link), status Badge, started, duration, triggered by. Tabs: Input (JSON viewer), Output (JSON viewer or error Card with message and stack when available), Request (for REST: resolved method, URL, headers with secrets masked, body; response status and body), Logs (code tools: stdout/stderr in ScrollArea), Context (thread link when triggered from chat, MCP client and token name when over MCP, retry chain).</dd>
+<dt>Actions</dt><dd>Re-run. Open tool. Open conversation. Copy as cURL (secrets masked).</dd>
+<dt>Data</dt><dd><code>GET .../executions/{id}</code>.</dd>
+<dt>States</dt><dd>Running: Output tab shows a Progress and polls. Not found or not yours: permission denied state inside the Sheet.</dd>
+</dl>
+</div>
+
+<h2 id="connect">11. Connect</h2>
+
+<div class="card screen" id="s-clients">
+<div class="screen-head"><h3>11.1 AI clients</h3><span class="badge b-ex">Existing</span><span class="badge b-role">all</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/connect/clients</code> (today <code>dashboard/clients</code> with <code>clients/client-card.tsx</code>, <code>client-details-dialog.tsx</code>, <code>claude-desktop-dialog.tsx</code>)</dd>
+<dt>Purpose</dt><dd>Get an AI application talking to this workspace's MCP server in a few steps.</dd>
+<dt>Layout</dt><dd>Card grid (existing <code>client-card</code>): Claude (desktop and web), ChatGPT, Cursor, a generic MCP client (FastMCP), Terminal (MCP CLI), Custom integration. Each card opens a Dialog with Tabs: Setup (numbered steps with copyable config snippet that already contains the workspace MCP URL and a token placeholder), Verify (a "Send test ping" Button that watches for the client's first request: <code>GET /v1/workspaces/{ws}/mcp/last-seen?client=</code> polled 5 s, shows "Connected 3 s ago" with the client's user agent), Troubleshoot (Accordion of common errors).</dd>
+<dt>Components</dt><dd>Card, Dialog, Tabs, Code block with copy, Button, Badge (Connected / Not seen), Accordion, Select (auth method: MCP token or OAuth).</dd>
+<dt>Actions</dt><dd>Create token inline (opens 11.2's Dialog and injects the token into the snippet once). Choose auth method: "MCP token" (snippet includes bearer header) or "Sign in with OAuth" (snippet has no token; the client's first request goes through 5.7). Copy config. Download config file (shown as text to copy when download is blocked).</dd>
+<dt>Data</dt><dd><code>GET /v1/workspaces/{ws}/mcp/server</code> (URL, supported transports), <code>GET .../mcp/last-seen</code>.</dd>
+<dt>States</dt><dd>No token and member without token permission: snippet shows a placeholder and a note to ask an admin. Card Badge turns to Connected once a request from that client type is seen.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-mcp">
+<div class="screen-head"><h3>11.2 MCP servers and tokens</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">member own tokens · admin all</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/connect/mcp</code> (today Settings → Security → MCP tokens tab: <code>api-settings/mcp-tokens-tab.tsx</code>, <code>create-mcp-token-dialog.tsx</code>, <code>mcp-token-dialog.tsx</code>)</dd>
+<dt>Purpose</dt><dd>Show the workspace's MCP endpoint, what it exposes, and manage the tokens that reach it.</dd>
+<dt>Layout</dt><dd>Top Card "Server": URL with copy (streamable HTTP), SSE URL, health Badge (from <code>GET /v1/workspaces/{ws}/mcp/health</code>), "What this server exposes" summary: n knowledge tools (one per KB with MCP on, 6.10), n tools (active tools), resources (<code>kb://</code> per KB), prompts. A "Preview tool list" Button opens a Sheet listing tool names and descriptions exactly as a client sees them (<code>GET .../mcp/manifest</code>). Below: Tokens table.</dd>
+<dt>Tokens table</dt><dd>Columns: Name, Scopes (Badges: <code>knowledge:read</code>, <code>knowledge:write</code>, <code>tools:run</code>, <code>tools:read</code>), Knowledge bases (All or n), Created by, Expires, Last used, Status. Row: Revoke (AlertDialog; <code>DELETE .../mcp/tokens/{id}</code>), Copy id, Edit name.</dd>
+<dt>Create token Dialog</dt><dd>Name (required), Scopes checkboxes, Knowledge base scope (All / selected multi-Select), Principals for document permissions (TagInput of <code>user:</code> / <code>group:</code>; default <code>workspace:*</code>), Expiry Select (7d, 30d, 90d, 1y, Never, Custom days). Result step shows the token once with copy and a "I stored it" confirmation before closing. <code>POST .../mcp/tokens { name, scopes, kbIds, principals, expiresInDays }</code>.</dd>
+<dt>Data</dt><dd><code>GET .../mcp/server</code>, <code>GET .../mcp/tokens</code>, <code>GET .../mcp/tokens/stats</code>.</dd>
+<dt>States</dt><dd>Empty: "No tokens yet" with Create. Expired rows greyed with a Badge. Member: sees and revokes own tokens only; cannot select <code>knowledge:write</code>. Server unhealthy: destructive Badge with the last error and a "Re-check" Button.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-oauth-clients">
+<div class="screen-head"><h3>11.3 OAuth clients</h3><span class="badge b-ex">Existing</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/connect/oauth-clients</code> (today Settings → Security → OAuth clients: <code>api-settings/oauth-clients-tab.tsx</code>, <code>create-oauth-client-dialog.tsx</code>, <code>oauth-client-dialog.tsx</code>)</dd>
+<dt>Purpose</dt><dd>Register AI applications that sign users in with OAuth instead of a shared token.</dd>
+<dt>Layout</dt><dd>Standard table: Client name, Client id (copy), Redirect URIs (count with Tooltip), Allowed scopes, Users authorised, Created, Status. Discovery Card above with the <code>.well-known</code> URLs and copy buttons.</dd>
+<dt>Create Dialog</dt><dd>Client name, Redirect URIs (list Input, https or localhost), Allowed scopes checkboxes, Client type (public with PKCE / confidential). Result shows client id and, for confidential, the secret once. <code>POST .../oauth/clients</code>.</dd>
+<dt>Actions</dt><dd>Row: Edit (name, URIs, scopes; <code>PATCH .../oauth/clients/{id}</code>), Rotate secret, Revoke all user grants (<code>POST .../oauth/clients/{id}/revoke-grants</code>), Delete (AlertDialog; <code>DELETE .../oauth/clients/{id}</code>).</dd>
+<dt>Data</dt><dd><code>GET .../oauth/clients</code>, <code>GET .../oauth/clients/stats</code>.</dd>
+<dt>States</dt><dd>Empty: one-paragraph explanation and Create. Validation: at least one redirect URI; URIs unique; scopes non-empty.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-secrets">
+<div class="screen-head"><h3>11.4 Secrets</h3><span class="badge b-ex">Existing</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/secrets</code> (today <code>dashboard/secrets</code> with <code>components/secrets/*</code>)</dd>
+<dt>Purpose</dt><dd>Store API keys and credentials once, encrypted, and reference them by name from tools and sources.</dd>
+<dt>Layout</dt><dd>Standard table: Name, Type (API key, Bearer, Basic, Custom), Active Switch, Expires, Last used, Used by (tools and sources count, Tooltip), Tags. Create / Edit Dialog: name (<code>^[A-Z][A-Z0-9_]{1,63}$</code>, shown as the template reference <code>{{secret.NAME}}</code>), type, value (password Input, never displayed after save), description, tags, expiry date (Calendar), max uses.</dd>
+<dt>Actions</dt><dd>Create: <code>POST /v1/workspaces/{ws}/secrets</code>. Edit metadata: <code>PATCH .../secrets/{id}</code>. Rotate value: Dialog with new value only (<code>POST .../secrets/{id}/rotate</code>). Deactivate / Activate. Delete (AlertDialog listing tools and sources that reference it; blocked with 409 while referenced, UI explains). Bulk: Deactivate, Delete.</dd>
+<dt>Data</dt><dd><code>GET .../secrets?page&amp;q&amp;type&amp;active</code> with <code>usedBy</code>.</dd>
+<dt>States</dt><dd>Expiring within 7 days: warning Badge; expired: destructive Badge and auto-inactive. Empty: explanation plus Create.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-integrations">
+<div class="screen-head"><h3>11.5 Integrations</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/integrations?tab=all|connected</code> (today <code>dashboard/integrations</code> with <code>integrations/integration-card, integration-connect-dialog, integration-settings-dialog, mcp-tools-table, integration-dependency-checker, template-browser</code>)</dd>
+<dt>Purpose</dt><dd>Connect third-party apps once, then use each connection for knowledge sources and for tools.</dd>
+<dt>Layout</dt><dd>Tabs: All, Connected. Card grid (existing <code>integration-card</code>) with logo, name, Badge (Connected / Not connected / Needs reauth), two capability icons ("Knowledge source", "Tools") and the connected account. Search and category filter (Documents and wikis, Code, Support, CRM, Communication, Data, AI providers).</dd>
+<dt>Catalogue</dt><dd>Knowledge-capable: SharePoint/OneDrive, Confluence, Google Drive, GitHub, Notion, Zendesk, Salesforce Knowledge. Tool-capable (from the current code): Google Calendar, Gmail, Google Sheets, Google Docs, Google Analytics, Google Ads, HubSpot, Slack, Shopify, Stripe, Salesforce, GitHub, LinkedIn, Twilio, SendGrid, Resend, Airtable, Notion, Google Drive. AI providers (OpenAI, Anthropic) appear under Settings → General as model providers, not here.</dd>
+<dt>Connect Dialog</dt><dd>Auth method per app: OAuth (popup; <code>GET .../integrations/{type}/connect</code> returns the URL), API key or token (Form with the fields the app needs; <code>POST .../integrations/{type}/credentials</code>), app-only certificate for SharePoint (upload; Tooltip explains tenant admin consent). Dependency checker (existing) lists missing prerequisites. On success a "What next" step offers "Add as knowledge source" (7.2 prefilled) and "Enable tools".</dd>
+<dt>Settings Dialog</dt><dd>Tabs: Account (connected as, scopes granted, Reconnect, Disconnect), Tools (existing <code>mcp-tools-table</code>: per-tool enable Switch, test Button; <code>POST .../integrations/{id}/tools/{tool}/enable|disable</code>), Sources (list of sources using this connection with links), Defaults (app-specific, for example default calendar).</dd>
+<dt>Actions</dt><dd>Connect, Reconnect, Disconnect (AlertDialog listing sources and tools that stop working; <code>POST .../integrations/{id}/disconnect</code>), Test connection (<code>POST .../integrations/{id}/test</code>), Reset tool defaults.</dd>
+<dt>Data</dt><dd><code>GET .../integrations/available</code>, <code>GET .../integrations</code>, <code>GET .../integrations/{id}/status</code>, <code>GET .../integrations/{id}/tools</code>.</dd>
+<dt>States</dt><dd>Needs reauth (token refresh failed): warning Badge, card action becomes Reconnect, and every source on that connection shows the revoked banner (7.3). Popup blocked: Dialog with the link to open manually. Empty Connected tab: "Nothing connected yet".</dd>
+</dl>
+</div>
+
+<h2 id="team">12. Team and governance</h2>
+
+<div class="card screen" id="s-team">
+<div class="screen-head"><h3>12.1 Team</h3><span class="badge b-ex">Existing</span><span class="badge b-role">member read · admin write</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/team?tab=members|invitations|groups</code> (today <code>dashboard/team</code> with <code>team/team-members-list, invite-members-dialog, remove-member-dialog</code>)</dd>
+<dt>Purpose</dt><dd>Manage who is in the workspace, their role, and pending invitations.</dd>
+<dt>Layout</dt><dd>Tabs. Members: Table (Avatar and name, email, Role Select inline for admins, Joined, Last active, Actions). Invitations: Table (email, role, invited by, sent, expires, Actions: Resend, Cancel). Groups: read-only Table of directory groups synced from the identity provider (name, members, last synced) used by KB and source permissions; "Sync now" Button.</dd>
+<dt>Invite Dialog</dt><dd>Emails (TagInput, multiple), Role Select (Member / Admin; Owner only by an owner), optional message. <code>POST .../members/invite { emails[], role, message }</code>.</dd>
+<dt>Actions</dt><dd>Change role: <code>PATCH .../members/{userId}/role</code> (server enforces who may set what; UI disables options the current role cannot grant). Remove: AlertDialog with a Select "Reassign their files and sources to" (<code>DELETE .../members/{userId}?reassignTo=</code>). Transfer ownership (owner only; AlertDialog with typed confirmation). Leave workspace (self; blocked for the last owner). Cancel invitation: <code>DELETE .../invitations/{id}</code>. Resend: <code>POST .../invitations/{id}/resend</code>.</dd>
+<dt>Data</dt><dd><code>GET .../members</code>, <code>GET .../invitations</code>, <code>GET .../groups</code>.</dd>
+<dt>States</dt><dd>Member: table read-only, no Invite. Invitation expired: Badge and Resend. Seat limit reached (if the plan has one): Invite disabled with Tooltip.</dd>
+<dt>Validation</dt><dd>Valid emails; not already a member; max 50 per invite.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-audit">
+<div class="screen-head"><h3>12.2 Audit log</h3><span class="badge b-ex">Existing</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/audit</code> (today <code>dashboard/audit-logs</code> with <code>components/audit-logs/*</code>)</dd>
+<dt>Purpose</dt><dd>Answer "who changed what, when, from where" for every object in the workspace.</dd>
+<dt>Layout</dt><dd>Stats strip (events in range, failed actions, distinct actors). Standard table. Row click opens a Sheet with the full event (actor, action, resource type and id with link, before/after diff for updates, IP, user agent, request id).</dd>
+<dt>Columns</dt><dd>Time, Actor (member, API key, MCP token, system), Action (created, updated, deleted, synced, queried, executed, invited, revoked…), Resource (type Badge and name link), Status (Success / Failed), IP.</dd>
+<dt>Filters</dt><dd>Actor, Action, Resource type, Status, Date range; search by resource name or id. Deep link from any object's page: "View audit history" opens this screen filtered to <code>resource={type}:{id}</code> (<code>GET .../audit/resource/{type}/{id}</code>).</dd>
+<dt>Actions</dt><dd>Export CSV or JSON for the current filter (<code>GET .../audit/export?…</code>). Copy event id.</dd>
+<dt>Data</dt><dd><code>GET .../audit?page&amp;actor&amp;action&amp;resourceType&amp;status&amp;from&amp;to&amp;q</code>, <code>GET .../audit/statistics?from&amp;to</code>, <code>GET .../audit/{id}</code>.</dd>
+<dt>States</dt><dd>Empty range: "No events". Retention note in the footer ("Events are kept for n days").</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-analytics">
+<div class="screen-head"><h3>12.3 Analytics</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/analytics?range=7d</code> (today <code>dashboard/analytics</code> with <code>dashboard/executions-chart.tsx</code>, <code>chart-area-interactive.tsx</code>)</dd>
+<dt>Purpose</dt><dd>Workspace-wide usage across knowledge and tools, by caller and by client.</dd>
+<dt>Layout</dt><dd>Range ToggleGroup and DateRangePicker. Tabs: Knowledge, Tools, Clients. Knowledge: stat Cards (queries, no-answer rate, median latency, active KBs), queries per day by KB (stacked bar), Table of KBs (queries, no-answer rate, latency, link to 6.9). Tools: stat Cards (executions, success rate, median duration, active tools), executions and errors per day (existing chart), Top tools Table (<code>GET .../analytics/top-tools</code>), Recent failures list. Clients: requests by channel (App, API, MCP, Public) and by MCP client name; tokens and OAuth clients by usage.</dd>
+<dt>Components</dt><dd>ToggleGroup, DateRangePicker, Tabs, Card, Chart, DataTable.</dd>
+<dt>Actions</dt><dd>Export CSV per tab. Table links to the object's own analytics or detail.</dd>
+<dt>Data</dt><dd><code>GET .../analytics/overview?from&amp;to</code>, <code>GET .../analytics/execution-metrics?from&amp;to</code>, <code>GET .../analytics/top-tools?from&amp;to&amp;limit</code>, <code>GET .../analytics/clients?from&amp;to</code>. Each tab is one call.</dd>
+<dt>States</dt><dd>Empty range: chart placeholder text. Loading Skeleton per tab. Member: permission denied.</dd>
+</dl>
+</div>
+
+<h2 id="settings">13. Settings</h2>
+<p>Settings uses a left sub-navigation (existing <code>settings/layout.tsx</code>) that collapses to Tabs under 768px.</p>
+
+<div class="card screen" id="s-set-general">
+<div class="screen-head"><h3>13.1 General</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/settings/general</code></dd>
+<dt>Purpose</dt><dd>Workspace identity, model providers and knowledge defaults.</dd>
+<dt>Cards</dt><dd>
+<ul>
+<li><b>Workspace</b>: name, slug (SlugInput with availability check; changing it shows an Alert that MCP and share URLs change), logo upload, time zone Select.</li>
+<li><b>Model providers</b>: per provider (OpenAI, Anthropic, Azure OpenAI, custom OpenAI-compatible) a key Input stored as a secret, Test Button, and "Default chat model" and "Default embedding model" Selects. Changing the embedding model shows an Alert that every KB must be rebuilt, with a "Rebuild all" Button that queues per-KB refreshes.</li>
+<li><b>Knowledge defaults</b> (applied to new sources and KBs): chunk size and overlap, stale after days, retry failed items automatically Switch, allowed file types (multi-Select), max file size, max documents.</li>
+<li><b>Chat</b>: default KB selection for new threads (All / none / specific), tools enabled by default Switch, assistant name shown in chat.</li>
+</ul></dd>
+<dt>Actions</dt><dd>Save per card: <code>PATCH /v1/workspaces/{ws}</code>, <code>PATCH .../settings</code>. Test provider: <code>POST .../settings/providers/{p}/test</code>.</dd>
+<dt>Data</dt><dd><code>GET .../settings</code>, <code>GET /v1/models</code>.</dd>
+<dt>States</dt><dd>Provider key invalid: inline error from the test. Member: permission denied.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-set-security">
+<div class="screen-head"><h3>13.2 Security</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">admin</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/settings/security</code> (tokens and OAuth clients moved out to 11.2 and 11.3; this page keeps policy)</dd>
+<dt>Cards</dt><dd>
+<ul>
+<li><b>API keys</b>: workspace API keys table (name, scopes, KBs, created by, expires, last used) with Create (same Dialog as 6.8) and Revoke. <code>GET|POST /v1/workspaces/{ws}/api-keys</code>, <code>DELETE .../api-keys/{id}</code>.</li>
+<li><b>Token policy</b>: max token lifetime Select, require expiry Switch, allow members to create tokens Switch, allowed IP ranges (list Input).</li>
+<li><b>Sign-in</b>: allowed email domains for invitations, require SSO Switch (when an IdP is configured), session lifetime.</li>
+<li><b>Data</b>: retention days for conversations and executions, "Send document text to model providers for synthesis" Switch (off disables synthesis workspace-wide and shows an Alert on every KB retrieval page).</li>
+</ul></dd>
+<dt>Actions</dt><dd>Save: <code>PATCH .../settings/security</code>.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-set-appearance">
+<div class="screen-head"><h3>13.3 Appearance</h3><span class="badge b-ex">Existing</span><span class="badge b-role">all (per user)</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/settings/appearance</code></dd>
+<dt>Controls</dt><dd>Theme RadioGroup (System / Light / Dark), density (Comfortable / Compact), sidebar default (Expanded / Collapsed), code font size. Stored per user: <code>PATCH /v1/users/me/preferences</code>.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-set-notifications">
+<div class="screen-head"><h3>13.4 Notifications</h3><span class="badge b-ex">Existing</span><span class="badge b-role">member own · admin workspace</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/settings/notifications</code></dd>
+<dt>Layout</dt><dd>Two Cards. <b>My notifications</b> (per user): Switch rows for sync failures on sources I own, stale document nudges for documents I own, proposals awaiting my review, weekly usage digest; channel Checkboxes (in-app, email). <b>Workspace alerts</b> (admin): recipients (TagInput of members or emails) for sync failures, quota above 80% and 100%, token and secret expiry, and an optional Slack channel (uses the Slack integration) with Test Button.</dd>
+<dt>Actions</dt><dd><code>PATCH /v1/users/me/preferences { notifications }</code>, <code>PATCH .../settings/notifications</code>, <code>POST .../settings/notifications/test</code>.</dd>
+</dl>
+</div>
+
+<div class="card screen" id="s-set-advanced">
+<div class="screen-head"><h3>13.5 Advanced</h3><span class="badge b-rew">Reworked</span><span class="badge b-role">admin · owner for deletion</span></div>
+<dl class="kv">
+<dt>Route</dt><dd><code>/w/{ws}/settings/advanced</code></dd>
+<dt>Cards</dt><dd>
+<ul>
+<li><b>Export</b>: "Export all knowledge" (documents, metadata, KB and source definitions as a zip; <code>POST .../knowledge/export</code> → task → download link; Progress while running). "Export tools" (JSON).</li>
+<li><b>Import</b>: upload a previous export (<code>POST .../knowledge/import</code>) with a preview step (counts of KBs, sources, documents; conflicts by name with Skip / Rename).</li>
+<li><b>Webhooks</b>: outbound webhooks for events (sync.completed, sync.failed, proposal.created, execution.failed); Table with URL, events, secret, last delivery; Create Dialog; Test delivery.</li>
+<li><b>Danger zone</b>: "Delete all knowledge" (preview first: <code>GET .../knowledge/delete-preview</code> shows counts; AlertDialog requires typing the workspace slug; <code>DELETE .../knowledge { confirm }</code>). "Delete workspace" (owner only; typed confirmation; <code>DELETE /v1/workspaces/{ws}</code>).</li>
+</ul></dd>
+<dt>States</dt><dd>Export running: Card shows Progress and the task can be left; a toast links to the download when done. Import validation failure: Alert listing the problems. Admin (not owner): Delete workspace hidden.</dd>
+</dl>
+</div>
+
+<h2 id="flows">14. Main flows</h2>
+
+<div class="card flow">
+<h3>14.1 Create a knowledge base from a SharePoint source</h3>
+<ol>
+<li>Admin opens Knowledge bases (6.1) and clicks New knowledge base. Sheet 6.2 opens on Basics; types "Policies", description, Next.</li>
+<li>Sources step is empty. Clicks Add a new source; the Add source wizard (7.2) opens in a nested Sheet at Step 1.</li>
+<li>Picks SharePoint / OneDrive. The card shows "Needs connection"; the Connect Dialog (11.5) opens. Admin chooses app-only certificate, uploads it, tenant admin consent link is shown. Connection test passes.</li>
+<li>Step 2: selects the "Policies" site, expands Documents library, ticks two folders. Clicks Preview: 812 items listed. Next.</li>
+<li>Step 3: keeps Structure aware, 512/50, turns OCR on because some policies are scanned. Preview chunks looks right. Next.</li>
+<li>Step 4: adds exclude rule "Path glob: **/Archive/**" (count drops to 790). Maps metadata <code>department ← column "Dept"</code>, <code>locale = en</code>. Adds tag "policy". Next.</li>
+<li>Step 5: Inherit from source (explained), schedule Daily 02:00, Subscribe to change notifications on, Deleted at source → Remove, Notify on failure on. Next.</li>
+<li>Step 6: reviews, leaves "Attach to knowledge base" pointing at the draft KB, clicks Create and sync now. The nested Sheet closes; the source is pre-selected in 6.2's Sources step.</li>
+<li>Step 3 of 6.2: picks Balanced. Create. <code>POST .../knowledge-bases</code> returns; the app navigates to 6.3.</li>
+<li>Overview shows Health: Indexing with "112 of 790 items". The source's sync run is visible under Recent index jobs. When it finishes, Health becomes Healthy (or Degraded with a failure count and a View failures link).</li>
+<li>Admin opens Access (6.10): members All, Respect source permissions is the default because the source inherits ACLs. Saves. The KB is queryable by members who can see the underlying SharePoint items.</li>
+</ol>
+</div>
+
+<div class="card flow">
+<h3>14.2 Add a file source and watch ingestion</h3>
+<ol>
+<li>Member opens Files (8.1), clicks Upload. Drops 12 PDFs; two are rejected (one PPTX over 50 MB, one .zip) with reasons in the list; the other ten upload with per-row Progress. Ticks "Add to a source after upload", picks "Onboarding PDFs". Uploads finish; the Dialog reports 10 uploaded, 2 rejected.</li>
+<li>The files are posted to the source (<code>POST .../sources/{id}/items { fileIds }</code>) and processing starts. The Dialog offers "View source"; the member clicks it and lands on 7.3.</li>
+<li>7.3 shows the Current run Card: "Processing 4 of 10 items, 0 failed", phases moving through parse, chunk, embed. Polling every 3 s.</li>
+<li>One item fails: the run ends Partial, the Errors Card shows "PDF is encrypted (1)". Member opens Items (7.4) filtered to Failed, sees the file, downloads the original, and later replaces it in Files (8.3 → Versions → Upload new version). The source reprocesses that item automatically; the item turns Indexed.</li>
+<li>Every KB reading the source shows the new documents in Documents (6.5) after its next index refresh, which the source completion triggers.</li>
+</ol>
+</div>
+
+<div class="card flow">
+<h3>14.3 Tune retrieval in the playground</h3>
+<ol>
+<li>Admin opens KB → Playground (6.7). Asks "What is the refund window for annual plans?".</li>
+<li>Answer arrives with two citations, but the Chunks tab shows the top hit is a 2019 policy. Admin opens the citation Popover and sees the document is Stale (older than 90 days).</li>
+<li>In the Settings rail, admin adds a metadata filter <code>year in [2025, 2026]</code> and raises the threshold to 0.6. Rail shows the Draft Badge. Asks again; the stale hit is gone and the answer cites the current policy.</li>
+<li>Admin sets Instructions to "Answer in one paragraph and always name the policy document", temperature 0. Asks again; the answer matches.</li>
+<li>Clicks Pin question to add it to the Test set with the rule "must cite refund-policy-2026.pdf". Runs the test set: all pinned questions pass.</li>
+<li>Clicks Save as KB defaults. 6.6 now shows the new values; the Request tab in the last result shows the exact body, and Copy as cURL takes the admin to 6.8 to hand it to a developer.</li>
+</ol>
+</div>
+
+<div class="card flow">
+<h3>14.4 Connect an AI client</h3>
+<ol>
+<li>Member opens Connect → AI clients (11.1) and clicks the Claude card. The Setup tab shows the workspace MCP URL in a config snippet.</li>
+<li>Auth method Select: chooses MCP token. Clicks Create token; the 11.2 Dialog opens with scopes <code>knowledge:read</code> and <code>tools:run</code> preselected, expiry 90d. Creates it; the token is injected into the snippet once and the Dialog asks for "I stored it".</li>
+<li>Member copies the snippet into the client's MCP settings and restarts the client.</li>
+<li>Verify tab: clicks Send test ping and waits; within a few seconds the Badge reads "Connected 2 s ago, claude-desktop/1.x". The card in the grid shows Connected.</li>
+<li>In the client, the member asks a question; the answer cites a document. In Docs AI, 9.2 Conversations shows the thread with Channel = MCP, and 6.9 counts the query under MCP callers.</li>
+<li>Alternative: member chooses Sign in with OAuth. The snippet has no token. The client opens 5.7; the member picks the workspace and clicks Allow. The client is registered under 11.3 by an admin beforehand.</li>
+</ol>
+</div>
+
+<div class="card flow">
+<h3>14.5 Resolve a failed sync</h3>
+<ol>
+<li>Home (5.8) shows "Needs attention: 1 source failed to sync". Admin clicks it and lands on 7.5 for the "Engineering wiki" Confluence source with the failed run's Sheet open.</li>
+<li>The summary reads: phase "list changes" failed, error class "permission", message "401 from Confluence: token expired". Counts show nothing changed. The Retry button is disabled because the failure is at the connection level, and the Sheet links to Integrations.</li>
+<li>Admin opens 11.5; the Confluence card shows Needs reauth. Clicks Reconnect; OAuth popup; success. The "What next" step is skipped since sources exist.</li>
+<li>Back on 7.3 the revoked banner is gone. Admin clicks Sync now. The run completes Partial: 3 items failed with "Attachment too large (60 MB)".</li>
+<li>Admin opens 7.6 Settings → Rules and metadata, adds exclude rule "Size under 50 MB is false" (or "MIME type is not application/zip"). Saves; the Dialog asks to reprocess; admin declines. Next sync is a full listing; the three items become Excluded, the run is Success.</li>
+<li>The KBs that read the source drop from Degraded to Healthy at their next refresh. The audit log (12.2) shows the reconnect, the rule change and both syncs.</li>
+</ol>
+</div>
+
+<h2 id="app-parity">Appendix A. Reference platform parity</h2>
+<p>Each row is a capability documented by the reference platform's knowledge base pages (data sources and querying). "Docs AI home" names the screen and control that covers it. Gaps are called out in the last column.</p>
+<div class="tw"><table>
+<tr><th>Reference platform capability</th><th>Docs AI home</th><th>Notes</th></tr>
+<tr><td>Web page(s): one or more public URLs, one per line</td><td>7.2 Step 1 Single URL; Step 2 URL list</td><td>Adds optional header auth for intranets</td></tr>
+<tr><td>Sitemap: all pages of a site</td><td>7.2 Website crawl or sitemap</td><td>Adds depth, max pages, same-domain, path patterns, robots</td></tr>
+<tr><td>Documents: PDF, TXT, DOCX up to 10 MB, text only</td><td>7.2 File upload; 8.2 Upload</td><td>Also DOCX, XLSX, PPTX, CSV, MD, HTML; 50 MB; OCR and vision optional</td></tr>
+<tr><td>Tables: CSV or XLSX, each row a chunk, headers as field names</td><td>7.2 Plain text or table with column mapping; Step 3 "Rows" strategy</td><td>Title and metadata columns chosen explicitly</td></tr>
+<tr><td>Plain text: paste raw content</td><td>7.2 Plain text or table (Markdown Textarea)</td><td>Edits create revisions (6.5 History)</td></tr>
+<tr><td>Zendesk articles integration</td><td>7.2 Zendesk connector; 11.5 connection</td><td></td></tr>
+<tr><td>Shopify products integration</td><td>11.5 Shopify (tools only)</td><td><b>Gap</b>: Shopify as a knowledge source is not in the minimum connector set; it can be added as a plugin without UI change (7.2 renders from source-kinds)</td></tr>
+<tr><td>Refresh rate: Never, Daily, Weekly, Monthly for URL and integration sources</td><td>7.2 Step 5 Refresh schedule; 7.6</td><td>Adds Webhook triggered, time of day, and pause</td></tr>
+<tr><td>Set refresh during import or retroactively</td><td>7.2 Step 5 at creation; 7.6 after</td><td></td></tr>
+<tr><td>LLM chunking: smart, FAQ optimisation, remove HTML and noise, topic headers, summarise</td><td>7.2 Step 3 chunking strategy RadioGroup plus "Remove HTML and boilerplate" Switch</td><td>Credit-use Badge on LLM strategies</td></tr>
+<tr><td>Chunk size and overlap</td><td>7.2 Step 3 sliders; 13.1 defaults</td><td></td></tr>
+<tr><td>Metadata key-value pairs on data sources</td><td>7.2 Step 4 metadata mapping (static or from field); 6.5 Metadata tab</td><td></td></tr>
+<tr><td>Tags on documents</td><td>7.2 Step 4 tags; 6.5 tag editing; 8.1 file tags</td><td></td></tr>
+<tr><td>Filter by metadata (plan, region, product line)</td><td>6.6 Default metadata filters; 6.7 rail; 6.8 <code>filters.metadata</code></td><td></td></tr>
+<tr><td>Tag filters include / exclude / include untagged</td><td>6.6 Defaults card; 6.8 <code>filters.tags</code></td><td></td></tr>
+<tr><td>Same document, different metadata per environment</td><td>6.4 per-KB contribution rules; one source in several KBs</td><td>Docs AI models "environments" as separate KBs over shared sources; per-KB metadata overrides are not modelled. <b>Partial</b></td></tr>
+<tr><td>Environment-level document selection from a shared set</td><td>6.4 KB sources with include/exclude rules</td><td></td></tr>
+<tr><td>Import error handling with hover details</td><td>7.4 Error column Tooltip; 7.5 run errors; 6.3 failures</td><td></td></tr>
+<tr><td>Document API: create, get, update, delete, tags and chunks</td><td>6.8 endpoint list</td><td></td></tr>
+<tr><td>Knowledge base on/off per agent</td><td>6.10 Access (members, keys, MCP, public); 9.1 KB chip per thread</td><td></td></tr>
+<tr><td>Trigger description (when the assistant should use the KB)</td><td>6.10 MCP tool name; 11.2 manifest preview; the KB description is the tool description</td><td>Description is edited in 6.2 / header</td></tr>
+<tr><td>Custom query (override the user message with a variable)</td><td>6.8 API <code>query</code> field; 10.3 tools can call the query endpoint with templated input</td><td></td></tr>
+<tr><td>Query rewriting before search with instructions</td><td>6.6 Query rewriting Switch and Rewrite instructions</td><td></td></tr>
+<tr><td>Chunk limit (1 to 10, default 3)</td><td>6.6 Chunk limit 1 to 20, default 8</td><td></td></tr>
+<tr><td>Model selection for the answer</td><td>6.6 Model Select; 6.7 rail</td><td></td></tr>
+<tr><td>Temperature</td><td>6.6 Temperature; 6.7 rail</td><td></td></tr>
+<tr><td>System prompt / instructions</td><td>6.6 System instructions; 6.7 rail</td><td></td></tr>
+<tr><td>Synthesis on/off (chunks only vs answer)</td><td>6.6 Synthesise answer Switch; 6.8 <code>settings.synthesis</code></td><td></td></tr>
+<tr><td>Runtime variables in query and filters</td><td>6.8 per-request <code>settings</code> and <code>filters</code> overrides</td><td></td></tr>
+<tr><td>Tool messages for Start / Complete / Fail / Delay with variants</td><td>9.1 no-answer message (6.6); chat shows a thinking indicator</td><td><b>Gap</b>: scripted per-state messages with random variants are a conversational-agent feature, not a knowledge feature; only the Fail message (no-answer) has a home</td></tr>
+<tr><td>Show source URLs with responses</td><td>6.6 Citation style; 6.10 public link "Show source links"</td><td></td></tr>
+<tr><td>Preview and test answers</td><td>6.7 Playground with Answer / Chunks / Request tabs and a pinned test set</td><td></td></tr>
+<tr><td>Query API endpoint</td><td>6.8 <code>POST /v1/knowledge-bases/{kbId}/query</code> with samples</td><td></td></tr>
+<tr><td>No-answer handling</td><td>6.6 threshold and no-answer message; 6.7 rejected chunks view; 6.9 no-answer rate and query list</td><td></td></tr>
+<tr><td>Integrations set up once, shared</td><td>11.5 connections reused by sources and tools</td><td></td></tr>
+</table></div>
+
+<h2 id="app-dropped">Appendix B. Dropped and deferred</h2>
+<div class="tw"><table>
+<tr><th>Feature in current code</th><th>Decision</th><th>Why</th></tr>
+<tr><td>Marketing and landing components (<code>navbar7.tsx</code>, root <code>app/page.tsx</code> hero)</td><td>Dropped</td><td>Docs AI is the signed-in product; the marketing site is a separate concern.</td></tr>
+<tr><td>Partner area (<code>app/(authenticated)/partner/*</code>: partner dashboard, customers, workspaces, embeds, API keys, billing) and the embed integrations page (<code>app/(embed)/*</code>)</td><td>Dropped</td><td>White-label reselling. Nothing in the knowledge or tools code depends on it; the embed page is fed by mock partner data.</td></tr>
+<tr><td>Billing (<code>settings/billing</code>, <code>billing_router.py</code>, subscription upgrade, usage tracking)</td><td>Dropped from this spec</td><td>Plan and quota numbers surface read-only in 8.4 and 12.1; purchase flows are out of scope until pricing is decided.</td></tr>
+<tr><td>Prompts (<code>dashboard/prompts</code>, versions, extend, execute)</td><td>Deferred</td><td>Reusable prompt templates are useful but not part of the four core jobs. Keep the backend; revisit as "Saved instructions" attachable to a KB (6.6) or a tool.</td></tr>
+<tr><td>Workflows (<code>dashboard/workflows</code>)</td><td>Deferred</td><td>Orchestration of tools; belongs to a later release once tools and knowledge are stable.</td></tr>
+<tr><td>Memories (<code>dashboard/memories</code>)</td><td>Folded in</td><td>Assistant memory becomes an internal KB per workspace that chat writes to through proposals (6.11); no separate screen.</td></tr>
+<tr><td>Assistants (<code>assistants.py</code>, per-assistant threads)</td><td>Folded in</td><td>One workspace assistant configured in 13.1 Chat card; multiple assistant personas are deferred.</td></tr>
+<tr><td>Capture / Proposal / Prompts sidebar sections with Active and Archived lists</td><td>Reworked</td><td>Collapsed into KB Proposals (6.11) with status Tabs.</td></tr>
+<tr><td>Users admin page (<code>dashboard/users</code>)</td><td>Merged</td><td>Team (12.1) covers members; platform-level user admin is not a workspace screen.</td></tr>
+<tr><td>Example page (<code>dashboard/example</code>), debug and test routers</td><td>Dropped</td><td>Development scaffolding.</td></tr>
+<tr><td>Public pack pages and skill packs from the TypeScript product (<code>public-pack-page</code>, <code>skill-packs-dialog</code>, gallery)</td><td>Reduced</td><td>The public share link (6.10) keeps the one capability that matters: a KB answering questions without login. Curated packs and a gallery are deferred.</td></tr>
+<tr><td>Librarian automation, entity pages and folder suggestions from the TypeScript product</td><td>Reduced</td><td>Kept as the Act / Suggest automation Select (6.11) and the folder tree in Files (8.1). Entity extraction pages are deferred.</td></tr>
+</table></div>
+
+<h2 id="app-api">Appendix C. API index</h2>
+<p>All paths are under <code>/v1</code>. Workspace-scoped paths are prefixed <code>/workspaces/{ws}</code> except the public query endpoints, which take the KB id and an API key or MCP token.</p>
+<div class="tw"><table>
+<tr><th>Area</th><th>Endpoints</th><th>Screens</th></tr>
+<tr><td>Auth and user</td><td><code>POST /auth/login|register|reset</code>, <code>GET /users/me</code>, <code>GET /users/me/workspaces</code>, <code>GET /users/me/invitations</code>, <code>PATCH /users/me/last-workspace</code>, <code>PATCH /users/me/preferences</code></td><td>5.1 to 5.6, 13.3, 13.4</td></tr>
+<tr><td>Workspaces</td><td><code>POST /workspaces</code>, <code>POST /workspaces/check-slug|suggest-slug</code>, <code>GET|PATCH|DELETE /workspaces/{ws}</code>, <code>GET /workspaces/{ws}/overview</code>, <code>POST /workspaces/{ws}/quickstart</code>, <code>GET|PATCH .../settings</code>, <code>.../settings/security|notifications</code>, <code>GET /models</code></td><td>5.5, 5.8, 13.x</td></tr>
+<tr><td>Tasks</td><td><code>GET /workspaces/{ws}/tasks/{taskId}</code>, <code>POST .../tasks/{taskId}/cancel</code></td><td>all long jobs</td></tr>
+<tr><td>Knowledge bases</td><td><code>GET|POST .../knowledge-bases</code>, <code>GET|PATCH|DELETE .../knowledge-bases/{kb}</code>, <code>.../{kb}/refresh|retry-failed|duplicate</code>, <code>.../{kb}/jobs</code>, <code>GET|POST .../{kb}/sources</code>, <code>PATCH|DELETE .../{kb}/sources/{sourceId}</code>, <code>.../{kb}/documents</code>, <code>.../documents/{item}</code>, <code>.../documents/{item}/chunks</code>, <code>.../items/{item}/reprocess|verify|owner</code>, <code>GET|PATCH .../{kb}/retrieval</code>, <code>.../{kb}/metadata-keys</code>, <code>POST .../{kb}/query</code>, <code>.../{kb}/suggested-questions</code>, <code>.../{kb}/test-questions</code>, <code>.../{kb}/analytics</code>, <code>GET|PATCH .../{kb}/access</code>, <code>.../{kb}/proposals</code>, <code>.../proposals/{id}/approve|reject</code></td><td>6.x</td></tr>
+<tr><td>Public query</td><td><code>POST /knowledge-bases/{kb}/query</code>, <code>GET /knowledge-bases/{kb}/documents</code>, <code>GET|PATCH /knowledge-bases/{kb}/documents/{id}</code>, <code>POST|DELETE /sources/{sourceId}/items</code>, <code>POST /sources/{sourceId}/sync</code></td><td>6.8</td></tr>
+<tr><td>Sources</td><td><code>GET /knowledge/source-kinds</code>, <code>GET|POST .../sources</code>, <code>POST .../sources/validate|preview|preview-chunks</code>, <code>GET|PATCH|DELETE .../sources/{id}</code>, <code>.../sources/{id}/sync|reprocess|retry-failed|rules</code>, <code>.../sources/{id}/items</code>, <code>.../items/{id}/reprocess</code>, <code>.../sources/{id}/runs</code>, <code>.../runs/{runId}</code>, <code>.../runs/{runId}/retry-failed|log</code>, <code>GET .../metadata-keys</code></td><td>7.x</td></tr>
+<tr><td>Files</td><td><code>GET .../files</code>, <code>POST .../files/upload-url</code>, <code>POST .../files/{id}/complete</code>, <code>GET|PATCH|DELETE .../files/{id}</code>, <code>.../files/{id}/versions</code>, <code>.../versions/{n}/restore</code>, <code>.../files/{id}/preview</code>, <code>GET|POST .../folders</code>, <code>GET .../folders/tree</code>, <code>PATCH|DELETE .../folders/{id}</code>, <code>GET .../storage</code>, <code>POST .../storage/prune-versions</code></td><td>8.x</td></tr>
+<tr><td>Chat</td><td><code>GET|POST .../chat/threads</code>, <code>GET|PUT|DELETE .../threads/{id}</code>, <code>GET|POST .../threads/{id}/messages</code>, <code>POST .../messages/{id}/feedback</code>, <code>POST .../threads/{id}/share</code>, <code>GET .../chat/search/messages</code></td><td>9.x</td></tr>
+<tr><td>Tools</td><td><code>GET|POST .../tools</code>, <code>GET|PUT|DELETE .../tools/{id}</code>, <code>.../tools/{id}/status|duplicate|deploy|test|validate|configuration-schema|files</code>, <code>.../tools/code-run/languages</code>, <code>.../tools/import/openapi|curl/preview|create</code>, <code>GET .../executions</code>, <code>GET .../executions/{id}</code>, <code>.../executions/{id}/rerun|cancel</code></td><td>10.x</td></tr>
+<tr><td>Connect</td><td><code>GET .../mcp/server|health|manifest|last-seen</code>, <code>GET|POST .../mcp/tokens</code>, <code>DELETE .../mcp/tokens/{id}</code>, <code>.../mcp/tokens/stats</code>, <code>GET|POST .../oauth/clients</code>, <code>PATCH|DELETE .../oauth/clients/{id}</code>, <code>.../revoke-grants</code>, <code>GET /oauth/clients/{id}/public</code>, <code>POST /oauth/authorize/consent</code>, <code>GET|POST .../api-keys</code>, <code>DELETE .../api-keys/{id}</code></td><td>5.7, 11.1 to 11.3, 13.2</td></tr>
+<tr><td>Secrets and integrations</td><td><code>GET|POST .../secrets</code>, <code>PATCH|DELETE .../secrets/{id}</code>, <code>.../secrets/{id}/rotate</code>, <code>GET .../integrations/available</code>, <code>GET .../integrations</code>, <code>GET .../integrations/{type}/connect</code>, <code>POST .../integrations/{type}/credentials</code>, <code>.../integrations/{id}/status|tools|test|disconnect|browse</code>, <code>.../tools/{tool}/enable|disable</code></td><td>11.4, 11.5</td></tr>
+<tr><td>Team and governance</td><td><code>GET .../members</code>, <code>POST .../members/invite</code>, <code>PATCH .../members/{userId}/role</code>, <code>DELETE .../members/{userId}</code>, <code>GET .../invitations</code>, <code>.../invitations/{id}/resend</code>, <code>DELETE .../invitations/{id}</code>, <code>GET .../groups</code>, <code>GET .../audit</code>, <code>.../audit/statistics|export</code>, <code>.../audit/resource/{type}/{id}</code>, <code>GET .../analytics/overview|execution-metrics|top-tools|clients</code></td><td>12.x</td></tr>
+<tr><td>Export and import</td><td><code>POST .../knowledge/export</code>, <code>GET .../knowledge/export/{taskId}</code>, <code>POST .../knowledge/import</code>, <code>GET .../knowledge/import/{taskId}</code>, <code>GET .../knowledge/delete-preview</code>, <code>DELETE .../knowledge</code>, <code>GET|POST .../webhooks</code></td><td>13.5</td></tr>
+</table></div>
+
+<h2 id="app-components">Appendix D. Component inventory</h2>
+<div class="tw"><table>
+<tr><th>Component</th><th>Source</th><th>Used by</th></tr>
+<tr><td>Sidebar, SidebarMenu, workspace switcher, user menu</td><td>Existing <code>app-sidebar.tsx</code>, <code>nav-main.tsx</code>, <code>nav-user.tsx</code>, <code>workspace-switcher.tsx</code> (shadcn sidebar-07)</td><td>Shell</td></tr>
+<tr><td>PageHeader</td><td>Existing <code>ui/page-header.tsx</code></td><td>Every list and detail page</td></tr>
+<tr><td>DataTable with toolbar, faceted filter, view options, pagination, row actions</td><td>Existing <code>common/data-table.tsx</code>, <code>common/data-table-page.tsx</code>, <code>knowledge-base/data-table-*.tsx</code></td><td>All list screens</td></tr>
+<tr><td>DynamicFilters</td><td>Existing <code>custom/dynamic-filters.tsx</code></td><td>6.5, 6.6, 6.7, 7.4</td></tr>
+<tr><td>Wizard</td><td>Existing <code>onboarding/wizard.tsx</code></td><td>5.5, 6.2, 7.2, 10.4</td></tr>
+<tr><td>FileDropzone</td><td>New <code>components/files/file-dropzone.tsx</code>, extracted from <code>upload-source-dialog</code>'s react-dropzone use</td><td>5.5, 7.2, 8.2</td></tr>
+<tr><td>FolderTree</td><td>New <code>components/files/folder-tree.tsx</code>, modelled on the TypeScript product's folder tree panel</td><td>8.1, 7.2 scope pickers</td></tr>
+<tr><td>DocumentSheet (Content, Chunks, Metadata, History)</td><td>New <code>components/knowledge/document-sheet.tsx</code></td><td>6.5, 7.4</td></tr>
+<tr><td>RetrievalSettingsForm and compact rail</td><td>New <code>components/knowledge/retrieval-form.tsx</code>, one component with a <code>variant</code></td><td>6.6, 6.7, 5.5</td></tr>
+<tr><td>QueryResult (Answer, Chunks, Request)</td><td>New <code>components/knowledge/query-result.tsx</code></td><td>6.7, 5.5</td></tr>
+<tr><td>CodeSample with copy and language Tabs</td><td>New <code>components/common/code-sample.tsx</code></td><td>6.8, 11.1, 11.2, 11.3</td></tr>
+<tr><td>Chat (thread rail, messages, composer, tool call card, citation popover)</td><td>Existing <code>chat.tsx</code>, <code>chat-sidebar.tsx</code>, <code>message.tsx</code>, <code>tool-call-card.tsx</code>, <code>multimodal-input.tsx</code>; citation Popover is new</td><td>9.1</td></tr>
+<tr><td>Tool detail (header, tabs, general, REST, code, testing sidebar, liquid editor)</td><td>Existing <code>actions/details/*</code>, <code>liquid-editor.tsx</code></td><td>10.3</td></tr>
+<tr><td>Import wizard</td><td>Existing <code>import-actions/*</code></td><td>10.4</td></tr>
+<tr><td>Client cards and setup dialogs</td><td>Existing <code>clients/*</code></td><td>11.1</td></tr>
+<tr><td>Token and OAuth client dialogs</td><td>Existing <code>api-settings/*</code>, <code>mcp-token-dialog.tsx</code>, <code>oauth-client-dialog.tsx</code></td><td>11.2, 11.3</td></tr>
+<tr><td>Integration cards and dialogs</td><td>Existing <code>integrations/*</code></td><td>11.5</td></tr>
+<tr><td>Team list and dialogs</td><td>Existing <code>team/*</code></td><td>12.1</td></tr>
+<tr><td>Charts</td><td>Existing <code>ui/chart.tsx</code>, <code>chart-area-interactive.tsx</code>, <code>dashboard/executions-chart.tsx</code></td><td>5.8, 6.9, 12.3</td></tr>
+<tr><td>ConfirmationDialog, ErrorDialog, LoadingState, Skeleton, TagInput, SlugInput, SelectableCard, DateRangePicker, Command search</td><td>Existing <code>ui/*</code>, <code>search-command.tsx</code></td><td>Throughout</td></tr>
+</table></div>
+
+<h2 id="app-states">Appendix E. Shared state rules</h2>
+<div class="states">
+<div class="state"><b>Loading</b>Skeleton in the shape of the region (table rows, stat cards, form fields). Never a full-page spinner inside the shell; the shell itself uses <code>dashboard-skeleton.tsx</code> only while the workspace resolves.</div>
+<div class="state"><b>Empty</b>Icon, one sentence that says what the object is for, one primary Button, optional secondary link. Filtered-empty is different: "No results match" plus Clear filters.</div>
+<div class="state"><b>Error</b>Alert (destructive) with the server message and a Retry Button that re-runs the failed request. Form errors map from <code>error.details[field]</code> to the field. Streaming errors keep partial output.</div>
+<div class="state"><b>Permission denied</b>Alert (neutral) "You do not have access to this page" with the required role and a link to Team. No Retry. Navigation items the role cannot use are hidden, not disabled.</div>
+<div class="state"><b>Running job</b>Progress with "n of m" when the total is known, indeterminate otherwise, elapsed time, Cancel where supported. Poll 2 to 5 s while visible; toast on completion when navigated away.</div>
+<div class="state"><b>Destructive</b>AlertDialog; the object name is typed back only when dependents exist; the dialog always lists what else is affected with counts.</div>
+<div class="state"><b>Dirty form</b>Sticky Save footer appears only when dirty; leaving triggers an AlertDialog with Discard / Stay.</div>
+<div class="state"><b>Copy</b>Every copyable value (URL, token, id, snippet) has a copy Button with a 2 s "Copied" state and a toast.</div>
+</div>
+
+<p class="meta" style="margin-top:3em">End of specification. Screens: 50 (8 entry and account, 11 knowledge base, 6 source, 4 file, 2 chat, 6 tool, 5 connect, 3 team and governance, 5 settings). The public share view and the document sheet are specified inside 6.10 and 6.5.</p>
+
+</div>

@@ -2,6 +2,8 @@
 
 A clickable UI mock of Docs AI: a Next.js 15 App Router app with shadcn/ui components and typed in-memory mock data. No backend. Any email and password sign in.
 
+**Handing this off?** Start with [`docs/handoff.md`](docs/handoff.md): what is built, what is still needed, and how this mock relates to the Python reference backend. The full screen spec is [`docs/ui-spec.html`](docs/ui-spec.html).
+
 ## Run it
 
 ```
